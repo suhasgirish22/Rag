@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How RAG Actually Works — an interactive guide</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="hero-kicker">An interactive lesson · no prior knowledge needed</p>
+    <h1>How RAG <span class="accent">Actually</span> Works</h1>
+    <p class="hero-sub">
+      RAG stands for <strong>Retrieval-Augmented Generation</strong>. It's how AI assistants answer
+      questions about <em>your</em> documents — documents they were never trained on.
+      In the next few minutes you'll run a real RAG pipeline, step by step, on a document of your choice.
+    </p>
+    <div class="hero-pipeline" aria-hidden="true">
+      <span class="pip">📄 Document</span><span class="arrow">→</span>
+      <span class="pip">✂️ Chunks</span><span class="arrow">→</span>
+      <span class="pip">🧭 Embeddings</span><span class="arrow">→</span>
+      <span class="pip">🔍 Retrieval</span><span class="arrow">→</span>
+      <span class="pip">💬 Answer</span>
+    </div>
+    <button class="btn btn-primary btn-big" id="start-btn">Start the lesson ↓</button>
+  </div>
+</header>
+
+<nav id="progress-nav" class="progress-nav" aria-label="Lesson progress">
+  <!-- filled by JS -->
+</nav>
+
+<main id="steps">
+
+  <!-- ============ STEP 1 ============ -->
+  <section class="step" id="step-1" data-step="1">
+    <div class="step-head">
+      <span class="step-num">Step 1</span>
+      <h2>Pick a document</h2>
+    </div>
+    <div class="explain">
+      <p>Large language models (the AI behind chatbots) only know what was in their training data.
+      They have never seen your meeting notes, your company wiki, or that PDF you got yesterday.</p>
+      <p><strong>RAG fixes this</strong> by letting the model <em>look things up</em> in your documents
+      before answering — like an open-book exam instead of a memory test.</p>
+      <p>Everything starts with a document. Use our sample, paste your own text, or upload a
+      <code>.txt</code> / <code>.md</code> file.</p>
+    </div>
+
+    <div class="card">
+      <div class="doc-controls">
+        <button class="btn btn-primary" id="use-sample-btn">Use the sample document 🐝</button>
+        <label class="btn btn-ghost file-label">
+          Upload a file
+          <input type="file" id="file-input" accept=".txt,.md,.markdown,text/plain" hidden>
+        </label>
+      </div>
+      <p class="hint">…or paste / edit text directly below:</p>
+      <textarea id="doc-input" rows="10" spellcheck="false"
+        placeholder="Paste a short document here (a few paragraphs works best)…"></textarea>
+      <div class="doc-meta" id="doc-meta"></div>
+      <div class="step-actions">
+        <button class="btn btn-primary" id="confirm-doc-btn" disabled>Use this document →</button>
+      </div>
+    </div>
+
+    <div class="quiz-slot" id="quiz-1"></div>
+  </section>
+
+  <!-- ============ STEP 2 ============ -->
+  <section class="step locked" id="step-2" data-step="2">
+    <div class="step-head">
+      <span class="step-num">Step 2</span>
+      <h2>Split the document into chunks</h2>
+    </div>
+    <div class="explain">
+      <p>We can't hand the model the whole document for every question — long documents are slow,
+      expensive, and full of irrelevant text that distracts the model. So we cut the document into
+      bite-sized pieces called <strong>chunks</strong>.</p>
+      <p>Later, instead of searching the whole document, we'll search <em>chunks</em> and hand the model
+      only the few that matter.</p>
+      <p>Chunk size is a trade-off you'll feel for yourself in a moment:</p>
+      <ul>
+        <li><strong>Small chunks</strong> → precise, focused matches… but a chunk may cut an idea in half.</li>
+        <li><strong>Big chunks</strong> → full context preserved… but each chunk mixes several topics, making matches fuzzier.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="slider-row">
+        <label for="chunk-size">Chunk size: <strong><span id="chunk-size-label"></span> words</strong></label>
+        <input type="range" id="chunk-size" min="15" max="120" step="5">
+      </div>
+      <div class="slider-row">
+        <label for="chunk-overlap">Overlap: <strong><span id="chunk-overlap-label"></span> words</strong>
+          <span class="mini-hint">(each chunk repeats a little of the previous one so ideas aren't cut mid-sentence)</span>
+        </label>
+        <input type="range" id="chunk-overlap" min="0" max="20" step="2">
+      </div>
+      <div class="chunk-stats" id="chunk-stats"></div>
+      <div class="chunk-grid" id="chunk-grid"></div>
+    </div>
+
+    <div class="quiz-slot" id="quiz-2"></div>
+  </section>
+
+  <!-- ============ STEP 3 ============ -->
+  <section class="step locked" id="step-3" data-step="3">
+    <div class="step-head">
+      <span class="step-num">Step 3</span>
+      <h2>Turn chunks into embeddings</h2>
+    </div>
+    <div class="explain">
+      <p>Computers can't compare <em>meaning</em> directly — but they're great at comparing <em>numbers</em>.
+      An <strong>embedding</strong> converts a piece of text into a list of numbers (a point in space)
+      such that <strong>texts with similar meaning land close together</strong>.</p>
+      <p>Think of it as a map of meaning: "the queen lays eggs" and "the queen is the only fertile bee"
+      end up as neighbors, while "stock prices fell" lands far away — even though none of them share many words.</p>
+      <p>Real systems use neural networks producing hundreds of dimensions. To keep things visible, this demo
+      uses a simpler word-statistics embedding (TF-IDF) and squashes it down to 2D — the core idea,
+      <em>similar meaning ⇒ nearby points</em>, is exactly the same.</p>
+      <p>👇 Each dot is one chunk of your document. <strong>Click a dot</strong> to inspect what its embedding "noticed".</p>
+    </div>
+
+    <div class="card">
+      <div class="space-layout">
+        <div class="space-wrap">
+          <svg id="embed-space" viewBox="0 0 640 480" role="img" aria-label="Semantic space of document chunks"></svg>
+          <p class="space-caption">Semantic space — distance ≈ difference in meaning. Axes have no units; only <em>relative position</em> matters.</p>
+        </div>
+        <aside class="inspector" id="chunk-inspector">
+          <p class="inspector-empty">Click a dot to inspect that chunk's embedding.</p>
+        </aside>
+      </div>
+    </div>
+
+    <div class="quiz-slot" id="quiz-3"></div>
+  </section>
+
+  <!-- ============ STEP 4 ============ -->
+  <section class="step locked" id="step-4" data-step="4">
+    <div class="step-head">
+      <span class="step-num">Step 4</span>
+      <h2>Ask a question</h2>
+    </div>
+    <div class="explain">
+      <p>Everything so far happened <em>before</em> any question — chunking and embedding are done once
+      and stored in a <strong>vector database</strong>. Now the live part: a user shows up and asks something.</p>
+    </div>
+    <div class="card">
+      <div class="suggested-questions" id="suggested-questions"></div>
+      <div class="ask-row">
+        <input type="text" id="question-input" placeholder="Type a question about your document…" autocomplete="off">
+        <button class="btn btn-primary" id="ask-btn">Ask →</button>
+      </div>
+    </div>
+    <div class="quiz-slot" id="quiz-4"></div>
+  </section>
+
+  <!-- ============ STEP 5 ============ -->
+  <section class="step locked" id="step-5" data-step="5">
+    <div class="step-head">
+      <span class="step-num">Step 5</span>
+      <h2>Embed the question</h2>
+    </div>
+    <div class="explain">
+      <p>The question goes through the <strong>same embedding process</strong> as the chunks, so it lands
+      in the <strong>same semantic space</strong>. That's the trick that makes search possible: once the
+      question is a point on the same map, "find relevant text" becomes "find the nearest dots".</p>
+      <p>Watch where your question (the ⭐) lands relative to the chunks:</p>
+    </div>
+    <div class="card">
+      <div class="space-wrap">
+        <svg id="query-space" viewBox="0 0 640 480" role="img" aria-label="Semantic space with query"></svg>
+        <p class="space-caption" id="query-caption"></p>
+      </div>
+    </div>
+    <div class="quiz-slot" id="quiz-5"></div>
+  </section>
+
+  <!-- ============ STEP 6 ============ -->
+  <section class="step locked" id="step-6" data-step="6">
+    <div class="step-head">
+      <span class="step-num">Step 6</span>
+      <h2>Retrieve the best chunks</h2>
+    </div>
+    <div class="explain">
+      <p>Now we measure how close every chunk is to the question, using <strong>cosine similarity</strong> —
+      a score from 0 (unrelated) to 1 (identical direction in meaning-space). We keep the
+      <strong>top-k</strong> highest-scoring chunks and ignore the rest.</p>
+      <p>This is the <strong>R</strong> in RAG: <em>Retrieval</em>.</p>
+    </div>
+    <div class="card">
+      <div class="slider-row">
+        <label for="topk-slider">Top-k (how many chunks to retrieve): <strong><span id="topk-label"></span></strong></label>
+        <input type="range" id="topk-slider" min="1" max="6" step="1">
+      </div>
+      <div class="space-wrap">
+        <svg id="retrieval-space" viewBox="0 0 640 480" role="img" aria-label="Retrieval visualization"></svg>
+        <p class="space-caption">Lines connect the question to its retrieved chunks. Thicker line = higher similarity.</p>
+      </div>
+      <div id="retrieval-list" class="retrieval-list"></div>
+    </div>
+    <div class="quiz-slot" id="quiz-6"></div>
+  </section>
+
+  <!-- ============ STEP 7 ============ -->
+  <section class="step locked" id="step-7" data-step="7">
+    <div class="step-head">
+      <span class="step-num">Step 7</span>
+      <h2>Build the prompt</h2>
+    </div>
+    <div class="explain">
+      <p>The retrieved chunks get pasted — literally, as plain text — into a prompt for the language model.
+      No magic: the model simply receives instructions, the chunks as "context", and the question.</p>
+      <p>Models charge and limit by <strong>tokens</strong> (word-pieces; roughly 4 characters ≈ 1 token).
+      This is why we retrieve a few chunks instead of sending the whole document.</p>
+      <p>Below is the <em>exact</em> text that would be sent:</p>
+    </div>
+    <div class="card">
+      <div class="token-bar-wrap">
+        <div class="token-bar" id="token-bar"></div>
+        <div class="token-legend" id="token-legend"></div>
+      </div>
+      <pre class="prompt-view" id="prompt-view"></pre>
+    </div>
+    <div class="quiz-slot" id="quiz-7"></div>
+  </section>
+
+  <!-- ============ STEP 8 ============ -->
+  <section class="step locked" id="step-8" data-step="8">
+    <div class="step-head">
+      <span class="step-num">Step 8</span>
+      <h2>Generate the answer</h2>
+    </div>
+    <div class="explain">
+      <p>The model reads the prompt and writes an answer <strong>grounded in the retrieved chunks</strong> —
+      the <strong>G</strong> in RAG: <em>Generation</em>.</p>
+      <p class="note">🔬 This demo runs entirely in your browser with no AI model, so we <em>simulate</em>
+      generation by extracting the most relevant sentences from the retrieved chunks. A real LLM would
+      paraphrase more fluently — but the grounding works exactly like this.</p>
+      <p>Each sentence of the answer is color-coded to show <strong>which chunk supports it</strong>.
+      Hover a sentence to see its source.</p>
+    </div>
+    <div class="card">
+      <div class="answer-box" id="answer-box"></div>
+      <div class="answer-sources" id="answer-sources"></div>
+    </div>
+    <div class="quiz-slot" id="quiz-8"></div>
+  </section>
+
+  <!-- ============ STEP 9 ============ -->
+  <section class="step locked" id="step-9" data-step="9">
+    <div class="step-head">
+      <span class="step-num">Step 9</span>
+      <h2>Break it! — interactive experiments</h2>
+    </div>
+    <div class="explain">
+      <p>The best way to understand a system is to break it. Every control below re-runs the
+      <strong>entire pipeline live</strong> — chunking → embedding → retrieval → prompt → answer.
+      Watch the answer panel at the bottom as you experiment.</p>
+    </div>
+
+    <div class="card experiments">
+      <div class="experiment-checklist" id="experiment-checklist"></div>
+
+      <div class="exp-grid">
+        <div class="exp-control">
+          <h4>✂️ Chunk size</h4>
+          <input type="range" id="exp-chunk-size" min="15" max="120" step="5">
+          <p><strong><span id="exp-chunk-size-label"></span> words</strong> → <span id="exp-chunk-count"></span></p>
+        </div>
+        <div class="exp-control">
+          <h4>🔢 Top-k</h4>
+          <input type="range" id="exp-topk" min="1" max="6" step="1">
+          <p>retrieving <strong>top <span id="exp-topk-label"></span></strong> chunks</p>
+        </div>
+        <div class="exp-control">
+          <h4>🗑️ Remove chunks</h4>
+          <p class="mini-hint">Untick a chunk to delete it from the database. Try removing the top-scoring one!</p>
+          <div id="exp-chunk-toggles" class="chunk-toggles"></div>
+        </div>
+        <div class="exp-control">
+          <h4>🍕 Add irrelevant chunks</h4>
+          <p class="mini-hint">Inject off-topic text into the database and see if it pollutes retrieval.</p>
+          <label class="toggle-label"><input type="checkbox" id="exp-distractors"> Add 3 off-topic chunks</label>
+        </div>
+      </div>
+
+      <div class="exp-live">
+        <h3>Live result</h3>
+        <div class="exp-question-row">
+          <span class="exp-q-label">Question:</span> <em id="exp-question"></em>
+        </div>
+        <div id="exp-retrieval" class="retrieval-list compact"></div>
+        <div class="answer-box" id="exp-answer-box"></div>
+        <div class="quality-meter" id="quality-meter"></div>
+      </div>
+    </div>
+
+    <div class="quiz-slot" id="quiz-9"></div>
+
+    <div class="finale card" id="finale" hidden>
+      <h2>🎓 You've run a complete RAG pipeline!</h2>
+      <p>You now know what most engineers learn only after weeks of debugging:</p>
+      <ul>
+        <li><strong>Chunking</strong> decides what <em>can</em> be found.</li>
+        <li><strong>Embeddings</strong> turn meaning into geometry.</li>
+        <li><strong>Retrieval</strong> picks the open-book pages.</li>
+        <li><strong>The prompt</strong> is just text — chunks pasted above a question.</li>
+        <li><strong>The answer is only as good as the chunks retrieved.</strong> Garbage in, garbage out.</li>
+      </ul>
+      <button class="btn btn-primary" id="restart-btn">Start over with a new document ↺</button>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>Everything on this page runs locally in your browser — your document never leaves your machine.</p>
+</footer>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
