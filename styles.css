@@ -129,6 +129,8 @@ a { color: var(--accent-2); }
 .btn-primary { background: var(--accent); border-color: var(--accent); color: #1a1205; }
 .btn-primary:hover:not(:disabled) { box-shadow: 0 4px 18px rgba(255, 180, 84, 0.35); }
 .btn-ghost { background: transparent; color: var(--ink); }
+.btn-secondary { background: var(--bg-card-2); border-color: var(--accent-2); color: var(--accent-2); }
+.btn-secondary:hover:not(:disabled) { box-shadow: 0 4px 18px rgba(92,200,255,0.2); }
 .btn-big { font-size: 1.1rem; padding: 14px 30px; }
 .file-label { display: inline-block; }
 
