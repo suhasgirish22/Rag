@@ -1,0 +1,21 @@
+{
+ "lastDay": 2,
+ "lessons": [
+  {
+   "day": 1,
+   "phase": 1,
+   "title": "What RAG actually is: the open-book exam",
+   "summary": "Why a frozen model can't answer questions about your data, why fine-tuning is the wrong fix, and the two clocks (indexing time and query time) that every technique in this course runs on.",
+   "estMinutes": 25,
+   "publishedAt": "2026-09-14T03:30:00Z"
+  },
+  {
+   "day": 2,
+   "phase": 1,
+   "title": "The pipeline end to end, and where it breaks",
+   "summary": "RAG is five stages bolted together, chunk, embed, index, retrieve, generate, and end-to-end quality is the product of each stage's success rate, not the average. Today we trace the pipeline as a data flow and catalog the specific failure mode native to each stage.",
+   "estMinutes": 25,
+   "publishedAt": "2026-09-15T00:00:00.000Z"
+  }
+ ]
+}
