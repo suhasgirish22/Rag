@@ -1,5 +1,5 @@
 {
- "lastDay": 2,
+ "lastDay": 3,
  "lessons": [
   {
    "day": 1,
@@ -16,6 +16,14 @@
    "summary": "RAG is five stages bolted together, chunk, embed, index, retrieve, generate, and end-to-end quality is the product of each stage's success rate, not the average. Today we trace the pipeline as a data flow and catalog the specific failure mode native to each stage.",
    "estMinutes": 25,
    "publishedAt": "2026-09-15T00:00:00.000Z"
+  },
+  {
+   "day": 3,
+   "phase": 1,
+   "title": "Why text isn't searchable: strings to numbers",
+   "summary": "Exact matching fails because people use different words for the same thing. The fix is to turn every chunk into a vector so similarity becomes arithmetic, which turns retrieval into a sparse storage problem with two very different layouts.",
+   "estMinutes": 25,
+   "publishedAt": "2026-09-16T03:39:29Z"
   }
  ]
 }
