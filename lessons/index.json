@@ -1,5 +1,5 @@
 {
- "lastDay": 4,
+ "lastDay": 5,
  "lessons": [
   {
    "day": 1,
@@ -32,6 +32,14 @@
    "summary": "Two separate questions, how much a term matters here and whether it tells you anything at all, multiplied together. IDF is really surprisal, which is why it zeroes out stopwords without a stopword list.",
    "estMinutes": 25,
    "publishedAt": "2026-09-17T03:33:43Z"
+  },
+  {
+   "day": 5,
+   "phase": 1,
+   "title": "Cosine similarity and why we normalize",
+   "summary": "Ranking by dot product means a document concatenated to itself beats an exact match. Cosine fixes that by comparing direction and discarding magnitude, and normalizing at index time makes it cost a single multiply-accumulate.",
+   "estMinutes": 25,
+   "publishedAt": "2026-09-18T03:33:30Z"
   }
  ]
 }
