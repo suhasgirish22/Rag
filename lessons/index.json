@@ -1,5 +1,5 @@
 {
- "lastDay": 5,
+ "lastDay": 6,
  "lessons": [
   {
    "day": 1,
@@ -40,6 +40,14 @@
    "summary": "Ranking by dot product means a document concatenated to itself beats an exact match. Cosine fixes that by comparing direction and discarding magnitude, and normalizing at index time makes it cost a single multiply-accumulate.",
    "estMinutes": 25,
    "publishedAt": "2026-09-18T03:33:30Z"
+  },
+  {
+   "day": 6,
+   "phase": 1,
+   "title": "Chunking 101: windows, overlap, the tradeoff",
+   "summary": "The real reason to chunk is not context limits, it is that a long document's vector dilutes every term by about 1/sqrt(k). Overlap patches the boundary problem at a storage cost you can compute, and the famous 512 token default is folklore from BERT's architecture.",
+   "estMinutes": 25,
+   "publishedAt": "2026-09-19T03:33:28Z"
   }
  ]
 }
