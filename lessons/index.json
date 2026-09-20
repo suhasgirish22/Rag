@@ -1,5 +1,5 @@
 {
- "lastDay": 6,
+ "lastDay": 7,
  "lessons": [
   {
    "day": 1,
@@ -48,6 +48,14 @@
    "summary": "The real reason to chunk is not context limits, it is that a long document's vector dilutes every term by about 1/sqrt(k). Overlap patches the boundary problem at a storage cost you can compute, and the famous 512 token default is folklore from BERT's architecture.",
    "estMinutes": 25,
    "publishedAt": "2026-09-19T03:33:28Z"
+  },
+  {
+   "day": 7,
+   "phase": 1,
+   "title": "Tokens: what they are and what they cost",
+   "summary": "BPE is a compression algorithm repurposed as a tokenizer, and the 4 chars per token rule breaks badly on code and non-Latin scripts. Tokenizers are model specific, and query-side context, not indexing, is what actually dominates a RAG bill.",
+   "estMinutes": 25,
+   "publishedAt": "2026-09-20T03:35:10Z"
   }
  ]
 }
