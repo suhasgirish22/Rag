@@ -1,5 +1,5 @@
 {
- "lastDay": 7,
+ "lastDay": 8,
  "lessons": [
   {
    "day": 1,
@@ -56,6 +56,14 @@
    "summary": "BPE is a compression algorithm repurposed as a tokenizer, and the 4 chars per token rule breaks badly on code and non-Latin scripts. Tokenizers are model specific, and query-side context, not indexing, is what actually dominates a RAG bill.",
    "estMinutes": 25,
    "publishedAt": "2026-09-20T03:35:10Z"
+  },
+  {
+   "day": 8,
+   "phase": 1,
+   "title": "Your first end-to-end RAG in 100 lines",
+   "summary": "A complete retrieval pipeline with no dependencies, assembled from the last five days. Then two real failures traced to their exact cause: an off-topic query whose whole vector collapses to the word 'of', and a correct answer that ranks fourth because IDF measures rarity rather than meaning.",
+   "estMinutes": 30,
+   "publishedAt": "2026-09-21T03:36:00Z"
   }
  ]
 }
