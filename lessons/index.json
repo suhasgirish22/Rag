@@ -1,5 +1,5 @@
 {
- "lastDay": 8,
+ "lastDay": 9,
  "lessons": [
   {
    "day": 1,
@@ -64,6 +64,14 @@
    "summary": "A complete retrieval pipeline with no dependencies, assembled from the last five days. Then two real failures traced to their exact cause: an off-topic query whose whole vector collapses to the word 'of', and a correct answer that ranks fourth because IDF measures rarity rather than meaning.",
    "estMinutes": 30,
    "publishedAt": "2026-09-21T03:36:00Z"
+  },
+  {
+   "day": 9,
+   "phase": 1,
+   "title": "Neural embeddings: what the encoder adds",
+   "summary": "Self-attention is a content addressable lookup with learned, soft matching, which is what gives one vector per word occurrence rather than per word type. It solves the vocabulary problem from Day 3, and costs quadratic attention, larger vectors, and all of your interpretability.",
+   "estMinutes": 25,
+   "publishedAt": "2026-09-22T03:34:57Z"
   }
  ]
 }
