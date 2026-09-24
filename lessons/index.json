@@ -1,5 +1,5 @@
 {
- "lastDay": 10,
+ "lastDay": 11,
  "lessons": [
   {
    "day": 1,
@@ -80,6 +80,14 @@
    "summary": "Collapsing token vectors into one is lossy, and doing it without an attention mask makes your embeddings depend on batch composition. Raw CLS vectors score worse than averaged GloVe, and no pooling choice fixes anisotropy.",
    "estMinutes": 25,
    "publishedAt": "2026-09-23T03:43:59Z"
+  },
+  {
+   "day": 11,
+   "phase": 1,
+   "title": "Contrastive training and InfoNCE",
+   "summary": "InfoNCE is cross entropy over the passages in your batch, temperature decides which negatives your gradient actually pays attention to, and in-batch negatives give quadratic training signal for linear compute. The denominator is what fixes the anisotropy from Day 10.",
+   "estMinutes": 25,
+   "publishedAt": "2026-09-24T03:44:10Z"
   }
  ]
 }
