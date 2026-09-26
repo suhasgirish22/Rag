@@ -1,5 +1,5 @@
 {
- "lastDay": 12,
+ "lastDay": 13,
  "lessons": [
   {
    "day": 1,
@@ -96,6 +96,14 @@
    "summary": "Random negatives produce a loss around 240,000 times smaller than hard ones, so they stop teaching almost immediately. Mining harder negatives is the biggest quality lever available, and it is also how you accidentally train your model that correct answers are wrong.",
    "estMinutes": 25,
    "publishedAt": "2026-09-25T03:35:07Z"
+  },
+  {
+   "day": 13,
+   "phase": 1,
+   "title": "Query and passage asymmetry, the silent bug",
+   "summary": "Models handle the query/passage difference with separate encoders or a text prefix, and getting the prefix wrong fails without any error. I measured the cost on a 40 query benchmark and got 5 points of recall@1, with a confidence interval that crosses zero.",
+   "estMinutes": 25,
+   "publishedAt": "2026-09-26T03:38:19Z"
   }
  ]
 }
