@@ -1,5 +1,5 @@
 {
- "lastDay": 13,
+ "lastDay": 14,
  "lessons": [
   {
    "day": 1,
@@ -104,6 +104,14 @@
    "summary": "Models handle the query/passage difference with separate encoders or a text prefix, and getting the prefix wrong fails without any error. I measured the cost on a 40 query benchmark and got 5 points of recall@1, with a confidence interval that crosses zero.",
    "estMinutes": 25,
    "publishedAt": "2026-09-26T03:38:19Z"
+  },
+  {
+   "day": 14,
+   "phase": 1,
+   "title": "Checkpoint: build and measure a baseline",
+   "summary": "Measured on a 40 query benchmark, dense retrieval beats the Day 8 TF-IDF system by 17.5 points of recall@1 with a confidence interval that does not cross zero. The win is not on the median query, it is that TF-IDF's failures land at rank 25 and rank 40 while the dense model's worst case is rank 5.",
+   "estMinutes": 30,
+   "publishedAt": "2026-09-27T03:37:12Z"
   }
  ]
 }
