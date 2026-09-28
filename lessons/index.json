@@ -1,5 +1,5 @@
 {
- "lastDay": 14,
+ "lastDay": 15,
  "lessons": [
   {
    "day": 1,
@@ -112,6 +112,14 @@
    "summary": "Measured on a 40 query benchmark, dense retrieval beats the Day 8 TF-IDF system by 17.5 points of recall@1 with a confidence interval that does not cross zero. The win is not on the median query, it is that TF-IDF's failures land at rank 25 and rank 40 while the dense model's worst case is rank 5.",
    "estMinutes": 30,
    "publishedAt": "2026-09-27T03:37:12Z"
+  },
+  {
+   "day": 15,
+   "phase": 2,
+   "title": "Exact kNN and why it doesn't scale",
+   "summary": "Brute force search has an arithmetic intensity of 0.5 FLOPs per byte against a machine balance of 4, so it is memory bound by eight times and behaves like a table scan. Measured: 93 ms and 10.8 queries per second at a million vectors, exactly as the roofline predicts.",
+   "estMinutes": 25,
+   "publishedAt": "2026-09-28T03:37:12Z"
   }
  ]
 }
