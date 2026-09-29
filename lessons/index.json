@@ -1,5 +1,5 @@
 {
- "lastDay": 15,
+ "lastDay": 16,
  "lessons": [
   {
    "day": 1,
@@ -120,6 +120,14 @@
    "summary": "Brute force search has an arithmetic intensity of 0.5 FLOPs per byte against a machine balance of 4, so it is memory bound by eight times and behaves like a table scan. Measured: 93 ms and 10.8 queries per second at a million vectors, exactly as the roofline predicts.",
    "estMinutes": 25,
    "publishedAt": "2026-09-28T03:37:12Z"
+  },
+  {
+   "day": 16,
+   "phase": 2,
+   "title": "The recall, latency, memory triangle",
+   "summary": "Recall in ANN means agreement with brute force, and the returns diminish hard: measured on real embeddings, scanning 1.7 percent of the data recovers 54 percent of the right answers and 13 percent recovers 95 percent. Which recall you need is a property of your whole pipeline, not your index.",
+   "estMinutes": 25,
+   "publishedAt": "2026-09-29T03:40:52Z"
   }
  ]
 }
