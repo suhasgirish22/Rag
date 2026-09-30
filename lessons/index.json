@@ -1,5 +1,5 @@
 {
- "lastDay": 16,
+ "lastDay": 17,
  "lessons": [
   {
    "day": 1,
@@ -128,6 +128,14 @@
    "summary": "Recall in ANN means agreement with brute force, and the returns diminish hard: measured on real embeddings, scanning 1.7 percent of the data recovers 54 percent of the right answers and 13 percent recovers 95 percent. Which recall you need is a property of your whole pipeline, not your index.",
    "estMinutes": 25,
    "publishedAt": "2026-09-29T03:40:52Z"
+  },
+  {
+   "day": 17,
+   "phase": 2,
+   "title": "HNSW I: small-world graphs, the intuition",
+   "summary": "Greedy search on a pure nearest-neighbour graph gets 1.3 percent recall and stops after 1.7 hops, because every edge is short and local minima are everywhere. Eight random long edges per node more than double it, and HNSW is a skip list for metric space built on that idea.",
+   "estMinutes": 25,
+   "publishedAt": "2026-09-30T03:36:22Z"
   }
  ]
 }
