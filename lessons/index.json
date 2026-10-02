@@ -1,5 +1,5 @@
 {
- "lastDay": 18,
+ "lastDay": 19,
  "lessons": [
   {
    "day": 1,
@@ -144,6 +144,14 @@
    "summary": "Measured on a real incremental build: efSearch is a per-query knob you can change freely, while M and efConstruction are frozen at build time. Raising M past about 16 does nothing because the diversity heuristic refuses the extra edges, and a cheap efConstruction bakes a worse graph in permanently.",
    "estMinutes": 25,
    "publishedAt": "2026-10-01T03:36:39Z"
+  },
+  {
+   "day": 19,
+   "phase": 2,
+   "title": "HNSW III: build one yourself",
+   "summary": "Ninety lines of working HNSW, with layer sizes matching N/M^l exactly. Then a controlled comparison against the flat graph from Day 18 where the hierarchy contributed nothing at 2,800 vectors, which is a lesson about measuring at your own scale rather than trusting a paper's defaults.",
+   "estMinutes": 30,
+   "publishedAt": "2026-10-02T03:36:29Z"
   }
  ]
 }
