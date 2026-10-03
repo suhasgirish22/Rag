@@ -1,5 +1,5 @@
 {
- "lastDay": 19,
+ "lastDay": 20,
  "lessons": [
   {
    "day": 1,
@@ -152,6 +152,14 @@
    "summary": "Ninety lines of working HNSW, with layer sizes matching N/M^l exactly. Then a controlled comparison against the flat graph from Day 18 where the hierarchy contributed nothing at 2,800 vectors, which is a lesson about measuring at your own scale rather than trusting a paper's defaults.",
    "estMinutes": 30,
    "publishedAt": "2026-10-02T03:36:29Z"
+  },
+  {
+   "day": 20,
+   "phase": 2,
+   "title": "IVF: clustering the vector space",
+   "summary": "Measured: at 256 cells, nearly half of queries have their nearest neighbour in a cell they did not pick, which is why nprobe is a correctness requirement rather than a tuning knob. Compared at equal work rather than equal nprobe, finer partitions win decisively, and the sqrt(N) rule falls out of balancing the coarse scan against the list scan.",
+   "estMinutes": 25,
+   "publishedAt": "2026-10-03T03:36:18Z"
   }
  ]
 }
