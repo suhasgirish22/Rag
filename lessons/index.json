@@ -1,5 +1,5 @@
 {
- "lastDay": 20,
+ "lastDay": 21,
  "lessons": [
   {
    "day": 1,
@@ -160,6 +160,14 @@
    "summary": "Measured: at 256 cells, nearly half of queries have their nearest neighbour in a cell they did not pick, which is why nprobe is a correctness requirement rather than a tuning knob. Compared at equal work rather than equal nprobe, finer partitions win decisively, and the sqrt(N) rule falls out of balancing the coarse scan against the list scan.",
    "estMinutes": 25,
    "publishedAt": "2026-10-03T03:36:18Z"
+  },
+  {
+   "day": 21,
+   "phase": 2,
+   "title": "Product quantization I: the compression idea",
+   "summary": "Splitting a vector into m pieces and quantizing each independently gives 256^m representable vectors from m bytes. Measured, PQ alone at 64x compression gets recall 0.646, but used as a shortlist with a full-vector rescoring pass it gets 0.992, which is why it is a filter rather than a replacement.",
+   "estMinutes": 25,
+   "publishedAt": "2026-10-04T03:39:27Z"
   }
  ]
 }
