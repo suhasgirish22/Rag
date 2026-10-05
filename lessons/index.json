@@ -1,5 +1,5 @@
 {
- "lastDay": 21,
+ "lastDay": 22,
  "lessons": [
   {
    "day": 1,
@@ -168,6 +168,14 @@
    "summary": "Splitting a vector into m pieces and quantizing each independently gives 256^m representable vectors from m bytes. Measured, PQ alone at 64x compression gets recall 0.646, but used as a shortlist with a full-vector rescoring pass it gets 0.992, which is why it is a filter rather than a replacement.",
    "estMinutes": 25,
    "publishedAt": "2026-10-04T03:39:27Z"
+  },
+  {
+   "day": 22,
+   "phase": 2,
+   "title": "Product quantization II: asymmetric distance",
+   "summary": "Precomputing an m by 256 table once per query turns scoring into table lookups and adds with no decode, and it is an exact reformulation rather than an approximation. Keeping the query unquantized is worth 17 points of recall over quantizing it, and the real win is 64 times less memory traffic.",
+   "estMinutes": 25,
+   "publishedAt": "2026-10-05T03:36:12Z"
   }
  ]
 }
