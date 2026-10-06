@@ -1,5 +1,5 @@
 {
- "lastDay": 22,
+ "lastDay": 23,
  "lessons": [
   {
    "day": 1,
@@ -176,6 +176,14 @@
    "summary": "Precomputing an m by 256 table once per query turns scoring into table lookups and adds with no decode, and it is an exact reformulation rather than an approximation. Keeping the query unquantized is worth 17 points of recall over quantizing it, and the real win is 64 times less memory traffic.",
    "estMinutes": 25,
    "publishedAt": "2026-10-05T03:36:12Z"
+  },
+  {
+   "day": 23,
+   "phase": 2,
+   "title": "IVF-PQ: billion scale on one machine",
+   "summary": "Encoding the residual from the cell centroid rather than the raw vector is the idea that makes IVF-PQ work, and its value scales with how good your coarse quantizer is: measured, the gain triples going from 16 cells to 1024. The result is a billion vectors resident in 32 GB with the full data on SSD.",
+   "estMinutes": 25,
+   "publishedAt": "2026-10-06T03:41:37Z"
   }
  ]
 }
