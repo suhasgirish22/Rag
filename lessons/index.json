@@ -1,5 +1,5 @@
 {
- "lastDay": 23,
+ "lastDay": 24,
  "lessons": [
   {
    "day": 1,
@@ -184,6 +184,14 @@
    "summary": "Encoding the residual from the cell centroid rather than the raw vector is the idea that makes IVF-PQ work, and its value scales with how good your coarse quantizer is: measured, the gain triples going from 16 cells to 1024. The result is a billion vectors resident in 32 GB with the full data on SSD.",
    "estMinutes": 25,
    "publishedAt": "2026-10-06T03:41:37Z"
+  },
+  {
+   "day": 24,
+   "phase": 2,
+   "title": "OPQ and learned rotations",
+   "summary": "An orthogonal rotation leaves all distances unchanged but changes which dimensions land in which PQ subspace, which is free to exploit. Measured, the textbook variance-imbalance motivation did not apply to this model, but rotating into a decorrelated basis still bought 5 points of recall, while the expensive iterative refinement kept improving reconstruction error without improving recall.",
+   "estMinutes": 25,
+   "publishedAt": "2026-10-07T03:43:47Z"
   }
  ]
 }
