@@ -191,7 +191,7 @@
    "title": "OPQ and learned rotations",
    "summary": "An orthogonal rotation leaves all distances unchanged but changes which dimensions land in which PQ subspace, which is free to exploit. Measured, the textbook variance-imbalance motivation did not apply to this model, but rotating into a decorrelated basis still bought 5 points of recall, while the expensive iterative refinement kept improving reconstruction error without improving recall.",
    "estMinutes": 25,
-   "publishedAt": "2026-10-07T03:43:47Z"
+   "publishedAt": "2026-10-07T03:43:55Z"
   }
  ]
 }
