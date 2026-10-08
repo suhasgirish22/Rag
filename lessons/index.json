@@ -1,5 +1,5 @@
 {
- "lastDay": 24,
+ "lastDay": 25,
  "lessons": [
   {
    "day": 1,
@@ -192,6 +192,14 @@
    "summary": "An orthogonal rotation leaves all distances unchanged but changes which dimensions land in which PQ subspace, which is free to exploit. Measured, the textbook variance-imbalance motivation did not apply to this model, but rotating into a decorrelated basis still bought 5 points of recall, while the expensive iterative refinement kept improving reconstruction error without improving recall.",
    "estMinutes": 25,
    "publishedAt": "2026-10-07T03:43:55Z"
+  },
+  {
+   "day": 25,
+   "phase": 2,
+   "title": "DiskANN: when the index won't fit in RAM",
+   "summary": "Co-locating each node's vector and adjacency list in one 4 KB page means one read per hop, and the beam width stops being a recall knob and becomes the queue depth: 100 reads is 10 ms serial and 1.25 ms at depth 8. The alpha pruning rule demonstrably densifies the graph, but I could not show its benefit at my scale.",
+   "estMinutes": 25,
+   "publishedAt": "2026-10-08T03:47:59Z"
   }
  ]
 }
