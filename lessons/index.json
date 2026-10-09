@@ -1,5 +1,5 @@
 {
- "lastDay": 25,
+ "lastDay": 26,
  "lessons": [
   {
    "day": 1,
@@ -200,6 +200,14 @@
    "summary": "Co-locating each node's vector and adjacency list in one 4 KB page means one read per hop, and the beam width stops being a recall knob and becomes the queue depth: 100 reads is 10 ms serial and 1.25 ms at depth 8. The alpha pruning rule demonstrably densifies the graph, but I could not show its benefit at my scale.",
    "estMinutes": 25,
    "publishedAt": "2026-10-08T03:47:59Z"
+  },
+  {
+   "day": 26,
+   "phase": 2,
+   "title": "SSD-native search and the I/O that dominates",
+   "summary": "A hundred reads per query means 63 percent of queries touch the device's p99, so you need its p99.99 rather than its p99. Measured and simulated, planning from the median under-predicts the median query by 40 percent and the p99 query by nearly three times.",
+   "estMinutes": 25,
+   "publishedAt": "2026-10-09T03:36:18Z"
   }
  ]
 }
