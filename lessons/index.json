@@ -1,5 +1,5 @@
 {
- "lastDay": 26,
+ "lastDay": 27,
  "lessons": [
   {
    "day": 1,
@@ -208,6 +208,14 @@
    "summary": "A hundred reads per query means 63 percent of queries touch the device's p99, so you need its p99.99 rather than its p99. Measured and simulated, planning from the median under-predicts the median query by 40 percent and the p99 query by nearly three times.",
    "estMinutes": 25,
    "publishedAt": "2026-10-09T03:36:18Z"
+  },
+  {
+   "day": 27,
+   "phase": 2,
+   "title": "Scalar and binary quantization",
+   "summary": "int8 costs 0.6 points of recall for 4x compression with no training, which makes it close to free. Binary at the same byte budget as PQ loses on raw recall but needs 12 instructions per comparison instead of 96, and once a rescoring stage runs the accuracy difference between all three largely disappears.",
+   "estMinutes": 25,
+   "publishedAt": "2026-10-10T03:37:07Z"
   }
  ]
 }
