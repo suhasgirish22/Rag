@@ -1,5 +1,5 @@
 {
- "lastDay": 27,
+ "lastDay": 28,
  "lessons": [
   {
    "day": 1,
@@ -216,6 +216,14 @@
    "summary": "int8 costs 0.6 points of recall for 4x compression with no training, which makes it close to free. Binary at the same byte budget as PQ loses on raw recall but needs 12 instructions per comparison instead of 96, and once a rescoring stage runs the accuracy difference between all three largely disappears.",
    "estMinutes": 25,
    "publishedAt": "2026-10-10T03:37:07Z"
+  },
+  {
+   "day": 28,
+   "phase": 2,
+   "title": "Matryoshka embeddings",
+   "summary": "Naive truncation of an ordinary embedding collapses to 0.209 recall at 32 dimensions, because the information is spread evenly across all of them. A free rotation more than doubles that, and Matryoshka training buys the same property as a property of the model rather than a per-corpus artefact you have to version.",
+   "estMinutes": 25,
+   "publishedAt": "2026-10-11T03:49:09Z"
   }
  ]
 }
