@@ -1,5 +1,5 @@
 {
- "lastDay": 28,
+ "lastDay": 29,
  "lessons": [
   {
    "day": 1,
@@ -224,6 +224,14 @@
    "summary": "Naive truncation of an ordinary embedding collapses to 0.209 recall at 32 dimensions, because the information is spread evenly across all of them. A free rotation more than doubles that, and Matryoshka training buys the same property as a property of the model rather than a per-corpus artefact you have to version.",
    "estMinutes": 25,
    "publishedAt": "2026-10-11T03:49:09Z"
+  },
+  {
+   "day": 29,
+   "phase": 2,
+   "title": "Filtered search, the trap everyone hits",
+   "summary": "At identical 5.1 percent selectivity, post-filter recall ranged from 0.199 to 0.974 depending only on how the filter related to the query. The standard k over s arithmetic describes just the uncorrelated case, and the dangerous failure returns too few results rather than bad ones.",
+   "estMinutes": 25,
+   "publishedAt": "2026-10-12T03:37:06Z"
   }
  ]
 }
