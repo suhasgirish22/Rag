@@ -1,5 +1,5 @@
 {
- "lastDay": 29,
+ "lastDay": 30,
  "lessons": [
   {
    "day": 1,
@@ -232,6 +232,14 @@
    "summary": "At identical 5.1 percent selectivity, post-filter recall ranged from 0.199 to 0.974 depending only on how the filter related to the query. The standard k over s arithmetic describes just the uncorrelated case, and the dangerous failure returns too few results rather than bad ones.",
    "estMinutes": 25,
    "publishedAt": "2026-10-12T03:37:06Z"
+  },
+  {
+   "day": 30,
+   "phase": 2,
+   "title": "Filter-aware traversal",
+   "summary": "Skipping filtered nodes during a graph walk shatters the graph: at 10 percent selectivity on a 16-NN graph the largest reachable component was 11 percent of the passing nodes. It is a percolation threshold that scales as 1/M, and the fix is to traverse everything while collecting only matches.",
+   "estMinutes": 25,
+   "publishedAt": "2026-10-13T03:36:01Z"
   }
  ]
 }
