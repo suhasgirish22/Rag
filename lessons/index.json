@@ -1,5 +1,5 @@
 {
- "lastDay": 30,
+ "lastDay": 31,
  "lessons": [
   {
    "day": 1,
@@ -240,6 +240,14 @@
    "summary": "Skipping filtered nodes during a graph walk shatters the graph: at 10 percent selectivity on a 16-NN graph the largest reachable component was 11 percent of the passing nodes. It is a percolation threshold that scales as 1/M, and the fix is to traverse everything while collecting only matches.",
    "estMinutes": 25,
    "publishedAt": "2026-10-13T03:36:01Z"
+  },
+  {
+   "day": 31,
+   "phase": 2,
+   "title": "Catch-up: everything so far in plain words",
+   "summary": "Thirty days with the maths taken out. Text becomes arrows, documents get cut into pages, a graph walk finds the nearest page without reading all of them, and quantisation shrinks the numbers. Plus an honest list of what you can forget from the last two weeks.",
+   "estMinutes": 15,
+   "publishedAt": "2026-10-14T03:40:21Z"
   }
  ]
 }

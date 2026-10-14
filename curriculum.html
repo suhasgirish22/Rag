@@ -232,7 +232,9 @@ body {
   border: 0; border-radius: 8px; padding: 11px 22px; cursor: pointer;
   background: var(--accent); color: #1a1205; transition: filter .15s; white-space: nowrap;
 }
+a.btn { display: inline-block; text-decoration: none; text-align: center; }
 .btn:hover { filter: brightness(1.08); }
+.btn[hidden] { display: none; }
 .btn.ghost { background: none; color: var(--ink-dim); border: 1px solid var(--line); font-weight: 500; }
 .btn.ghost:hover { color: var(--ink); border-color: var(--ink-dim); }
 .btn:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; }
@@ -245,6 +247,10 @@ body {
 .note:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 1px; border-color: transparent; }
 .status { font-family: var(--mono); font-size: .7rem; color: var(--ink-dim); flex-basis: 100%; }
 .status.ok { color: var(--good); }
+.whynote {
+  border-top: 1px solid var(--line); background: var(--bg-card-2); margin: 0;
+  padding: 0 30px 19px; font-size: .82rem; line-height: 1.6; color: var(--ink-dim);
+}
 
 /* roadmap */
 .roadmap { margin-top: 46px; }
@@ -302,7 +308,8 @@ body {
   <header class="masthead">
     <p class="kicker">One lesson every morning, 9:00 IST</p>
     <h1>RAG: Zero to Researcher</h1>
-    <p>A hundred days from first principles to the research frontier. Twenty to thirty minutes each. Nothing counts until you mark it done.</p>
+    <p>A hundred days from first principles to the research frontier. Fifteen to twenty minutes each.
+       A day only counts once you have written your note for it, and the note is a commit on your own GitHub.</p>
   </header>
 
   <div class="readouts" id="readouts"></div>
@@ -313,7 +320,7 @@ body {
   </div>
   <div class="grid" id="grid"></div>
   <div class="gridfoot">
-    <span>Filled is done. Outlined is published but unfinished. Ringed is today.</span>
+    <span>Solid means your note is in. Faint means you ticked it here only. Outlined is published and open. Ringed is today.</span>
     <span id="pct"></span>
   </div>
 
@@ -331,11 +338,13 @@ body {
       <div class="prose" id="l-body"><p>Fetching the lesson.</p></div>
       <div id="l-ex"></div>
       <div class="complete" id="l-done" hidden>
-        <button class="btn" id="mark" type="button">Mark complete</button>
-        <input class="note" id="notebox" type="text" maxlength="280"
-               placeholder="One line: what clicked, or what didn't (optional)">
+        <a class="btn" id="notelink" href="#" target="_blank" rel="noopener">Write your note</a>
+        <button class="btn ghost" id="mark" type="button">Mark complete</button>
         <p class="status" id="status"></p>
       </div>
+      <p class="whynote">The note opens a four line file on GitHub. Fill it in, hit commit, and two things happen:
+         the day turns solid here because the file is now readable from anywhere, and the commit lands on your
+         contribution graph. Your rating out of five is how I find out whether a lesson was pitched right.</p>
     </article>
 
     <section class="roadmap">
@@ -352,12 +361,12 @@ body {
 
 <script>
 const PHASES = [
-  { id:1, name:"Foundations",         from:1,  to:14,  color:"var(--p1)" },
-  { id:2, name:"The Retrieval Stack", from:15, to:35,  color:"var(--p2)" },
-  { id:3, name:"Quality Engineering", from:36, to:55,  color:"var(--p3)" },
-  { id:4, name:"Evaluation",          from:56, to:70,  color:"var(--p4)" },
-  { id:5, name:"Production",          from:71, to:85,  color:"var(--p5)" },
-  { id:6, name:"Research Frontier",   from:86, to:100, color:"var(--p6)" },
+  { id:1, name:"Foundations",         from:1,  to:14,   color:"var(--p1)" },
+  { id:2, name:"The Retrieval Stack", from:15, to:36,   color:"var(--p2)" },
+  { id:3, name:"Quality Engineering", from:37, to:56,   color:"var(--p3)" },
+  { id:4, name:"Evaluation",          from:57, to:71,   color:"var(--p4)" },
+  { id:5, name:"Production",          from:72, to:86,   color:"var(--p5)" },
+  { id:6, name:"Research Frontier",   from:87, to:100,  color:"var(--p6)" },
 ];
 
 const SYLLABUS = [
@@ -391,6 +400,7 @@ const SYLLABUS = [
 "Matryoshka embeddings",
 "Filtered search, the trap everyone hits",
 "Filter-aware traversal",
+"Catch-up: everything so far in plain words",
 "BM25: know it cold",
 "Where dense retrieval fails: identifiers",
 "Reciprocal Rank Fusion",
@@ -456,8 +466,7 @@ const SYLLABUS = [
 "Multimodal RAG",
 "Papers I: DPR and the original RAG paper",
 "Papers II: HNSW and Product Quantization",
-"Papers III: ColBERT, SPLADE, HyDE",
-"Papers IV: Lost in the Middle, RAGAS, MRL",
+"Papers III: ColBERT, SPLADE, HyDE, RAGAS",
 "Open problems in retrieval research",
 "How to run your own RAG experiment",
 "Capstone: design a system, defend it",
@@ -471,14 +480,18 @@ const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt
 
 const $ = id => document.getElementById(id);
 const elReadouts = $("readouts"), elGrid = $("grid"), elLegend = $("legend"), elPct = $("pct"),
-      elBacklog = $("backlog"), elPhases = $("phases"), elMark = $("mark"), elNote = $("notebox"),
+      elBacklog = $("backlog"), elPhases = $("phases"), elMark = $("mark"), elNoteLink = $("notelink"),
       elStatus = $("status"), elDay = $("l-day"), elChips = $("l-chips"), elTitle = $("l-title"),
       elBody = $("l-body"), elEx = $("l-ex"), elBar = $("l-done"), elLesson = $("lesson");
 
 let published = new Map();   // day -> index metadata
 let bodies    = new Map();   // day -> full lesson
-let progress  = {};          // day -> {completedAt, note}
+let progress  = {};          // day -> {completedAt} ticked in this browser
+let verified  = {};          // day -> {notedAt, clarity, words} read back from notes/
 let viewDay   = null;
+
+const REPO = "https://github.com/suhasgirish22/Rag";
+const noteUrl = d => `${REPO}/edit/gh-pages/notes/day-${pad(d)}.md`;
 
 function loadProgress() {
   try { progress = JSON.parse(localStorage.getItem(KEY) || "{}"); }
@@ -488,10 +501,11 @@ function saveProgress() {
   try { localStorage.setItem(KEY, JSON.stringify(progress)); return true; }
   catch { return false; }
 }
-const isDone = d => !!progress[d];
+const isVerified = d => !!verified[d];
+const isDone = d => isVerified(d) || !!progress[d];
 
 function streak() {
-  const days = new Set(Object.values(progress).map(p => (p.completedAt || "").slice(0,10)).filter(Boolean));
+  const days = new Set(Object.values(verified).map(v => (v.notedAt || "").slice(0,10)).filter(Boolean));
   if (!days.size) return 0;
   const iso = d => d.toISOString().slice(0,10);
   let c = new Date(); c.setHours(0,0,0,0);
@@ -500,7 +514,12 @@ function streak() {
   while (days.has(iso(c))) { n++; c.setDate(c.getDate()-1); }
   return n;
 }
-const doneCount = () => Object.keys(progress).length;
+const doneCount = () => new Set([...Object.keys(verified), ...Object.keys(progress)]).size;
+const verifiedCount = () => Object.keys(verified).length;
+const meanClarity = () => {
+  const r = Object.values(verified).map(v => v.clarity).filter(n => n >= 1 && n <= 5);
+  return r.length ? (r.reduce((a,b)=>a+b,0)/r.length) : null;
+};
 const latestDay = () => published.size ? Math.max(...published.keys()) : null;
 const backlog   = () => [...published.keys()].filter(d => !isDone(d) && d !== latestDay()).sort((a,b)=>a-b);
 
@@ -508,12 +527,14 @@ function renderReadouts() {
   const s = streak(), done = doneCount(), late = backlog().length;
   const cur = latestDay() ? phaseOf(latestDay()) : PHASES[0];
   const mins = done * 25, hrs = mins >= 60 ? (mins/60).toFixed(1) : null;
+  const cl = meanClarity();
   const cards = [
-    { k:"Streak",        v:s,               u:s===1?"day":"days",           live:s>0 },
-    { k:"Completed",     v:done,            u:"of "+TOTAL },
-    { k:"Unfinished",    v:late,            u:late===1?"lesson":"lessons",  flag:late>0 },
-    { k:"Time invested", v:hrs ?? mins,     u:hrs?"hours":"min" },
-    { k:"Current phase", v:cur.id,          u:cur.name },
+    { k:"Note streak",   v:s,                 u:s===1?"day":"days",          live:s>0 },
+    { k:"Notes in",      v:verifiedCount(),   u:"of "+TOTAL },
+    { k:"Unfinished",    v:late,              u:late===1?"lesson":"lessons", flag:late>0 },
+    { k:"Time invested", v:hrs ?? mins,       u:hrs?"hours":"min" },
+    { k:"Your rating",   v:cl ? cl.toFixed(1) : "--", u:cl ? "out of 5" : "no notes yet" },
+    { k:"Current phase", v:cur.id,            u:cur.name },
   ];
   elReadouts.innerHTML = cards.map(c =>
     `<div class="readout ${c.flag?"flag":""} ${c.live?"live":""}">
@@ -525,9 +546,11 @@ function renderReadouts() {
 function renderGrid() {
   const latest = latestDay(), out = [];
   for (let d = 1; d <= TOTAL; d++) {
-    const ph = phaseOf(d), done = isDone(d), pub = published.has(d), today = d === latest;
+    const ph = phaseOf(d), pub = published.has(d), today = d === latest;
+    const ver = isVerified(d), tick = !ver && !!progress[d];
     let s = "future", style = "", t = `Day ${d}. ${SYLLABUS[d-1]}`;
-    if (done)       { s="done";  style=`background:${ph.color};border-color:${ph.color}`; t+=". Completed"; }
+    if (ver)        { s="done";  style=`background:${ph.color};border-color:${ph.color}`; t+=". Note committed"; }
+    else if (tick)  { s="tick";  style=`background:${ph.color};border-color:${ph.color};opacity:.42`; t+=". Ticked here, no note yet"; }
     else if (today) { s="today"; style=`color:${ph.color};border-color:${ph.color}`;      t+=". Today"; }
     else if (pub)   { s="pub";   style=`border-color:${ph.color}`;                        t+=". Not done"; }
     out.push(`<button class="cell ${pub?"go":""}" data-s="${s}" data-day="${d}" style="${style}"
@@ -615,14 +638,22 @@ async function renderLesson(day) {
   });
 
   elBar.hidden = false;
-  elMark.textContent = done ? `Undo day ${day}` : `Mark day ${day} complete`;
-  elMark.className = done ? "btn ghost" : "btn";
-  elNote.value = progress[day]?.note || "";
-  elNote.disabled = done;
-  if (done && progress[day].completedAt) {
-    elStatus.textContent = "Completed " + new Date(progress[day].completedAt)
-      .toLocaleString(undefined, { month:"short", day:"numeric", hour:"numeric", minute:"2-digit" });
+  const ver = verified[day];
+  elNoteLink.href = noteUrl(day);
+  elNoteLink.textContent = ver ? `Edit your day ${day} note` : `Write your day ${day} note`;
+  elNoteLink.className = ver ? "btn ghost" : "btn";
+  elMark.hidden = !!ver;
+  elMark.textContent = progress[day] ? `Untick day ${day}` : `Tick day ${day} without a note`;
+  if (ver) {
+    const bits = [];
+    if (ver.notedAt) bits.push("Note committed " + new Date(ver.notedAt)
+      .toLocaleDateString(undefined, { month:"short", day:"numeric" }));
+    if (ver.clarity) bits.push(`you rated it ${ver.clarity} out of 5`);
+    elStatus.textContent = bits.join(", ");
     elStatus.className = "status ok";
+  } else if (progress[day]) {
+    elStatus.textContent = "Ticked in this browser. Nobody else can see that, including me. Write the note to make it count.";
+    elStatus.className = "status";
   } else { elStatus.textContent = ""; elStatus.className = "status"; }
 }
 
@@ -637,9 +668,9 @@ elBacklog.addEventListener("click", e => { const b = e.target.closest("button[da
 elPhases.addEventListener("click", e => { const t = e.target.closest(".t[data-day]"); if (t) jump(+t.dataset.day); });
 
 elMark.addEventListener("click", () => {
-  if (viewDay == null) return;
-  if (isDone(viewDay)) delete progress[viewDay];
-  else progress[viewDay] = { completedAt: new Date().toISOString(), note: elNote.value.trim() };
+  if (viewDay == null || isVerified(viewDay)) return;
+  if (progress[viewDay]) delete progress[viewDay];
+  else progress[viewDay] = { completedAt: new Date().toISOString() };
   if (!saveProgress()) { elStatus.textContent = "This browser is blocking storage, so progress will not stick."; elStatus.className = "status"; }
   repaint();
   renderLesson(viewDay);
@@ -653,6 +684,10 @@ elMark.addEventListener("click", () => {
     const idx = await r.json();
     (idx.lessons || []).forEach(l => published.set(l.day, l));
   } catch { /* nothing published yet, or offline */ }
+  try {
+    const r = await fetch("progress.json", { cache: "no-cache" });
+    verified = (await r.json()).verified || {};
+  } catch { verified = {}; }
   repaint();
   renderLesson(latestDay());
 })();
