@@ -1,5 +1,5 @@
 {
- "lastDay": 31,
+ "lastDay": 32,
  "lessons": [
   {
    "day": 1,
@@ -248,6 +248,14 @@
    "summary": "Thirty days with the maths taken out. Text becomes arrows, documents get cut into pages, a graph walk finds the nearest page without reading all of them, and quantisation shrinks the numbers. Plus an honest list of what you can forget from the last two weeks.",
    "estMinutes": 15,
    "publishedAt": "2026-10-14T03:40:21Z"
+  },
+  {
+   "day": 32,
+   "phase": 2,
+   "title": "BM25: know it cold",
+   "summary": "BM25 is word counting with three corrections: repetition stops helping, rare words count more, long documents get discounted. Worked by hand on four tiny documents, then run over the 31 lessons of this course, including one query where it picks the wrong one.",
+   "estMinutes": 18,
+   "publishedAt": "2026-10-15T03:35:56Z"
   }
  ]
 }
