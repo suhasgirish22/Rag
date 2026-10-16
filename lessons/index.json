@@ -1,5 +1,5 @@
 {
- "lastDay": 32,
+ "lastDay": 33,
  "lessons": [
   {
    "day": 1,
@@ -256,6 +256,14 @@
    "summary": "BM25 is word counting with three corrections: repetition stops helping, rare words count more, long documents get discounted. Worked by hand on four tiny documents, then run over the 31 lessons of this course, including one query where it picks the wrong one.",
    "estMinutes": 18,
    "publishedAt": "2026-10-15T03:35:56Z"
+  },
+  {
+   "day": 33,
+   "phase": 2,
+   "title": "Where dense retrieval fails: identifiers",
+   "summary": "Embeddings are trained to put similar meanings close together, and that smoothing is exactly wrong for a string like SKU-4417, where 4418 is a different product rather than a similar one. Measured on a real tokeniser: two different SKUs share 60 percent of their tokens, the same as fox and dog.",
+   "estMinutes": 18,
+   "publishedAt": "2026-10-16T03:35:27Z"
   }
  ]
 }
