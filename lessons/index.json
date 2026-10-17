@@ -1,5 +1,5 @@
 {
- "lastDay": 33,
+ "lastDay": 34,
  "lessons": [
   {
    "day": 1,
@@ -264,6 +264,14 @@
    "summary": "Embeddings are trained to put similar meanings close together, and that smoothing is exactly wrong for a string like SKU-4417, where 4418 is a different product rather than a similar one. Measured on a real tokeniser: two different SKUs share 60 percent of their tokens, the same as fox and dog.",
    "estMinutes": 18,
    "publishedAt": "2026-10-16T03:35:27Z"
+  },
+  {
+   "day": 34,
+   "phase": 2,
+   "title": "Reciprocal Rank Fusion",
+   "summary": "Two retrievers give you two ranked lists whose scores mean nothing to each other. RRF throws the scores away and adds up 1 over 60 plus rank. Tried on this course's own lessons: one query got better, one got worse, one stayed put, and the reason why is the lesson.",
+   "estMinutes": 18,
+   "publishedAt": "2026-10-17T03:35:52Z"
   }
  ]
 }
