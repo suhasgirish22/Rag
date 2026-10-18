@@ -1,5 +1,5 @@
 {
- "lastDay": 34,
+ "lastDay": 35,
  "lessons": [
   {
    "day": 1,
@@ -272,6 +272,14 @@
    "summary": "Two retrievers give you two ranked lists whose scores mean nothing to each other. RRF throws the scores away and adds up 1 over 60 plus rank. Tried on this course's own lessons: one query got better, one got worse, one stayed put, and the reason why is the lesson.",
    "estMinutes": 18,
    "publishedAt": "2026-10-17T03:35:52Z"
+  },
+  {
+   "day": 35,
+   "phase": 2,
+   "title": "SPLADE: learned sparse retrieval",
+   "summary": "SPLADE keeps the inverted index of a word search engine but lets a model decide the weights, including weights on words the document never contained. One index instead of two, paid for in longer posting lists. Measured on this course's real index: 3,894 terms and 15,424 postings today, and the cost of expansion is linear in the expansion factor.",
+   "estMinutes": 18,
+   "publishedAt": "2026-10-18T03:43:28Z"
   }
  ]
 }
