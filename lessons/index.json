@@ -1,5 +1,5 @@
 {
- "lastDay": 35,
+ "lastDay": 36,
  "lessons": [
   {
    "day": 1,
@@ -280,6 +280,14 @@
    "summary": "SPLADE keeps the inverted index of a word search engine but lets a model decide the weights, including weights on words the document never contained. One index instead of two, paid for in longer posting lists. Measured on this course's real index: 3,894 terms and 15,424 postings today, and the cost of expansion is linear in the expansion factor.",
    "estMinutes": 18,
    "publishedAt": "2026-10-18T03:43:28Z"
+  },
+  {
+   "day": 36,
+   "phase": 2,
+   "title": "ColBERT: late interaction and MaxSim",
+   "summary": "Instead of squashing a passage into one vector, ColBERT keeps one vector per token and scores by finding, for each query word, its best match anywhere in the document. The quality comes free and the storage does not: with 128 dimensional token vectors, the index costs the token count divided by three, which is 372 times bigger on this course's own lessons.",
+   "estMinutes": 18,
+   "publishedAt": "2026-10-19T03:43:35Z"
   }
  ]
 }
