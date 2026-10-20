@@ -1,5 +1,5 @@
 {
- "lastDay": 36,
+ "lastDay": 37,
  "lessons": [
   {
    "day": 1,
@@ -288,6 +288,14 @@
    "summary": "Instead of squashing a passage into one vector, ColBERT keeps one vector per token and scores by finding, for each query word, its best match anywhere in the document. The quality comes free and the storage does not: with 128 dimensional token vectors, the index costs the token count divided by three, which is 372 times bigger on this course's own lessons.",
    "estMinutes": 18,
    "publishedAt": "2026-10-19T03:43:35Z"
+  },
+  {
+   "day": 37,
+   "phase": 3,
+   "title": "Bi-encoders versus cross-encoders",
+   "summary": "One question decides the architecture: can the model do its work before the query arrives? A bi-encoder can, so it scales. A cross-encoder cannot, so it costs a model pass per document and can only reorder a shortlist. Measured on this course's lessons, BM25 alone gets the right lesson first 30 percent of the time but has it in the top five 90 percent of the time.",
+   "estMinutes": 18,
+   "publishedAt": "2026-10-20T03:43:44Z"
   }
  ]
 }
