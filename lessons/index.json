@@ -1,5 +1,5 @@
 {
- "lastDay": 37,
+ "lastDay": 38,
  "lessons": [
   {
    "day": 1,
@@ -296,6 +296,14 @@
    "summary": "One question decides the architecture: can the model do its work before the query arrives? A bi-encoder can, so it scales. A cross-encoder cannot, so it costs a model pass per document and can only reorder a shortlist. Measured on this course's lessons, BM25 alone gets the right lesson first 30 percent of the time but has it in the top five 90 percent of the time.",
    "estMinutes": 18,
    "publishedAt": "2026-10-20T03:43:44Z"
+  },
+  {
+   "day": 38,
+   "phase": 3,
+   "title": "Reranking, the highest-leverage upgrade",
+   "summary": "Reranking is a sort step dropped in between retrieval and the model. Your first stage sets the ceiling and the reranker decides how much of it you collect. Measured on this course's lessons, the recall curve flattens at 15 candidates, so retrieving 50 would cost three times as much and buy nothing.",
+   "estMinutes": 18,
+   "publishedAt": "2026-10-21T03:43:17Z"
   }
  ]
 }
