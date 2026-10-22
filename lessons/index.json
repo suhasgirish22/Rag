@@ -9,8 +9,12 @@
    "summary": "AI chatbots have never read your documents, and when they do not know something they often make up a confident answer. RAG fixes that by looking up the right paragraph first and handing it to the AI along with the question.",
    "estMinutes": 10,
    "publishedAt": "2026-10-22T05:41:19Z",
-   "emailIds": [],
-   "repliedAt": null
+   "emailIds": [
+    "1a162226badef2b4"
+   ],
+   "repliedAt": null,
+   "emailThreadId": "1a162226badef2b4",
+   "lastEmailAt": "2026-10-22"
   }
  ]
 }
