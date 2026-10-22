@@ -1,5 +1,5 @@
 {
- "lastDay": 38,
+ "lastDay": 39,
  "lessons": [
   {
    "day": 1,
@@ -304,6 +304,14 @@
    "summary": "Reranking is a sort step dropped in between retrieval and the model. Your first stage sets the ceiling and the reranker decides how much of it you collect. Measured on this course's lessons, the recall curve flattens at 15 candidates, so retrieving 50 would cost three times as much and buy nothing.",
    "estMinutes": 18,
    "publishedAt": "2026-10-21T03:43:17Z"
+  },
+  {
+   "day": 39,
+   "phase": 3,
+   "title": "Building a retrieval cascade",
+   "summary": "A cascade is a funnel where each stage costs more per item and sees fewer items. What breaks is never the stages, it is the contract between them: fetching the text, removing duplicates, and what happens when a stage fails. Measured here, 38 percent of a top 20 candidate list was repeat documents.",
+   "estMinutes": 18,
+   "publishedAt": "2026-10-22T03:43:16Z"
   }
  ]
 }
