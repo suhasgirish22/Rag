@@ -1,543 +1,132 @@
 {
- "total": 100,
+ "track": "plain-english",
+ "total": 20,
  "phases": [
   {
    "id": 1,
-   "name": "Foundations",
+   "name": "The big idea",
    "from": 1,
-   "to": 14
+   "to": 6
   },
   {
    "id": 2,
-   "name": "The Retrieval Stack",
-   "from": 15,
-   "to": 36
+   "name": "Building one",
+   "from": 7,
+   "to": 12
   },
   {
    "id": 3,
-   "name": "Quality Engineering",
-   "from": 37,
-   "to": 56
+   "name": "Making it fast",
+   "from": 13,
+   "to": 16
   },
   {
    "id": 4,
-   "name": "Evaluation",
-   "from": 57,
-   "to": 71
-  },
-  {
-   "id": 5,
-   "name": "Production",
-   "from": 72,
-   "to": 86
-  },
-  {
-   "id": 6,
-   "name": "Research Frontier",
-   "from": 87,
-   "to": 100
+   "name": "Making it good",
+   "from": 17,
+   "to": 20
   }
  ],
  "syllabus": [
   {
    "day": 1,
    "phase": 1,
-   "title": "What RAG actually is: the open-book exam"
+   "title": "What RAG is, with no jargon"
   },
   {
    "day": 2,
    "phase": 1,
-   "title": "The pipeline end to end, and where it breaks"
+   "title": "Why AI chatbots make things up"
   },
   {
    "day": 3,
    "phase": 1,
-   "title": "Why text isn't searchable: strings to numbers"
+   "title": "Finding the right paragraph: keyword search"
   },
   {
    "day": 4,
    "phase": 1,
-   "title": "TF-IDF from scratch"
+   "title": "Why keyword search misses things"
   },
   {
    "day": 5,
    "phase": 1,
-   "title": "Cosine similarity and why we normalize"
+   "title": "Turning words into numbers"
   },
   {
    "day": 6,
    "phase": 1,
-   "title": "Chunking 101: windows, overlap, the tradeoff"
+   "title": "Close in meaning means close in distance"
   },
   {
    "day": 7,
-   "phase": 1,
-   "title": "Tokens: what they are and what they cost"
+   "phase": 2,
+   "title": "Cutting documents into pieces"
   },
   {
    "day": 8,
-   "phase": 1,
-   "title": "Your first end-to-end RAG in 100 lines"
+   "phase": 2,
+   "title": "How big should a piece be"
   },
   {
    "day": 9,
-   "phase": 1,
-   "title": "Neural embeddings: what the encoder adds"
+   "phase": 2,
+   "title": "Putting what you found into the prompt"
   },
   {
    "day": 10,
-   "phase": 1,
-   "title": "Pooling: mean, CLS, and why it matters"
+   "phase": 2,
+   "title": "A tiny RAG, worked on paper"
   },
   {
    "day": 11,
-   "phase": 1,
-   "title": "Contrastive training and InfoNCE"
+   "phase": 2,
+   "title": "Your first working RAG, line by line"
   },
   {
    "day": 12,
-   "phase": 1,
-   "title": "Hard negatives, the biggest training lever"
+   "phase": 2,
+   "title": "Review: the whole picture so far"
   },
   {
    "day": 13,
-   "phase": 1,
-   "title": "Query and passage asymmetry, the silent bug"
+   "phase": 3,
+   "title": "Why search gets slow with millions of documents"
   },
   {
    "day": 14,
-   "phase": 1,
-   "title": "Checkpoint: build and measure a baseline"
+   "phase": 3,
+   "title": "Shortcuts that are usually right"
   },
   {
    "day": 15,
-   "phase": 2,
-   "title": "Exact kNN and why it doesn't scale"
+   "phase": 3,
+   "title": "What a vector database actually is"
   },
   {
    "day": 16,
-   "phase": 2,
-   "title": "The recall, latency, memory triangle"
+   "phase": 3,
+   "title": "Using both kinds of search together"
   },
   {
    "day": 17,
-   "phase": 2,
-   "title": "HNSW I: small-world graphs, the intuition"
+   "phase": 4,
+   "title": "A second opinion: reranking"
   },
   {
    "day": 18,
-   "phase": 2,
-   "title": "HNSW II: M, efConstruction, efSearch"
+   "phase": 4,
+   "title": "When the answer is wrong, where to look"
   },
   {
    "day": 19,
-   "phase": 2,
-   "title": "HNSW III: build one yourself"
+   "phase": 4,
+   "title": "Testing with questions you already know the answer to"
   },
   {
    "day": 20,
-   "phase": 2,
-   "title": "IVF: clustering the vector space"
-  },
-  {
-   "day": 21,
-   "phase": 2,
-   "title": "Product quantization I: the compression idea"
-  },
-  {
-   "day": 22,
-   "phase": 2,
-   "title": "Product quantization II: asymmetric distance"
-  },
-  {
-   "day": 23,
-   "phase": 2,
-   "title": "IVF-PQ: billion scale on one machine"
-  },
-  {
-   "day": 24,
-   "phase": 2,
-   "title": "OPQ and learned rotations"
-  },
-  {
-   "day": 25,
-   "phase": 2,
-   "title": "DiskANN: when the index won't fit in RAM"
-  },
-  {
-   "day": 26,
-   "phase": 2,
-   "title": "SSD-native search and the I/O that dominates"
-  },
-  {
-   "day": 27,
-   "phase": 2,
-   "title": "Scalar and binary quantization"
-  },
-  {
-   "day": 28,
-   "phase": 2,
-   "title": "Matryoshka embeddings"
-  },
-  {
-   "day": 29,
-   "phase": 2,
-   "title": "Filtered search, the trap everyone hits"
-  },
-  {
-   "day": 30,
-   "phase": 2,
-   "title": "Filter-aware traversal"
-  },
-  {
-   "day": 31,
-   "phase": 2,
-   "title": "Catch-up: everything so far in plain words"
-  },
-  {
-   "day": 32,
-   "phase": 2,
-   "title": "BM25: know it cold"
-  },
-  {
-   "day": 33,
-   "phase": 2,
-   "title": "Where dense retrieval fails: identifiers"
-  },
-  {
-   "day": 34,
-   "phase": 2,
-   "title": "Reciprocal Rank Fusion"
-  },
-  {
-   "day": 35,
-   "phase": 2,
-   "title": "SPLADE: learned sparse retrieval"
-  },
-  {
-   "day": 36,
-   "phase": 2,
-   "title": "ColBERT: late interaction and MaxSim"
-  },
-  {
-   "day": 37,
-   "phase": 3,
-   "title": "Bi-encoders versus cross-encoders"
-  },
-  {
-   "day": 38,
-   "phase": 3,
-   "title": "Reranking, the highest-leverage upgrade"
-  },
-  {
-   "day": 39,
-   "phase": 3,
-   "title": "Building a retrieval cascade"
-  },
-  {
-   "day": 40,
-   "phase": 3,
-   "title": "LLM as reranker"
-  },
-  {
-   "day": 41,
-   "phase": 3,
-   "title": "Structure-aware chunking"
-  },
-  {
-   "day": 42,
-   "phase": 3,
-   "title": "Semantic chunking"
-  },
-  {
-   "day": 43,
-   "phase": 3,
-   "title": "Small-to-big parent document retrieval"
-  },
-  {
-   "day": 44,
-   "phase": 3,
-   "title": "Proposition indexing"
-  },
-  {
-   "day": 45,
-   "phase": 3,
-   "title": "Contextual retrieval I: the idea"
-  },
-  {
-   "day": 46,
-   "phase": 3,
-   "title": "Contextual retrieval II: making it affordable"
-  },
-  {
-   "day": 47,
-   "phase": 3,
-   "title": "Late chunking"
-  },
-  {
-   "day": 48,
-   "phase": 3,
-   "title": "Document parsing: PDFs, tables, garbage in"
-  },
-  {
-   "day": 49,
-   "phase": 3,
-   "title": "Metadata: what to store and why"
-  },
-  {
-   "day": 50,
-   "phase": 3,
-   "title": "Query rewriting for multi-turn"
-  },
-  {
-   "day": 51,
-   "phase": 3,
-   "title": "Multi-query and paraphrase fusion"
-  },
-  {
-   "day": 52,
-   "phase": 3,
-   "title": "HyDE: searching passage space"
-  },
-  {
-   "day": 53,
-   "phase": 3,
-   "title": "Query decomposition for multi-hop"
-  },
-  {
-   "day": 54,
-   "phase": 3,
-   "title": "Routing: when not to retrieve"
-  },
-  {
-   "day": 55,
-   "phase": 3,
-   "title": "Lost in the middle: context ordering"
-  },
-  {
-   "day": 56,
-   "phase": 3,
-   "title": "Checkpoint: measure every technique so far"
-  },
-  {
-   "day": 57,
    "phase": 4,
-   "title": "You cannot tune what you cannot measure"
-  },
-  {
-   "day": 58,
-   "phase": 4,
-   "title": "Building a golden set"
-  },
-  {
-   "day": 59,
-   "phase": 4,
-   "title": "Synthetic questions and their biases"
-  },
-  {
-   "day": 60,
-   "phase": 4,
-   "title": "Recall@k, the headline metric"
-  },
-  {
-   "day": 61,
-   "phase": 4,
-   "title": "MRR and why rank position matters"
-  },
-  {
-   "day": 62,
-   "phase": 4,
-   "title": "nDCG: graded relevance done right"
-  },
-  {
-   "day": 63,
-   "phase": 4,
-   "title": "Separating retrieval from generation failures"
-  },
-  {
-   "day": 64,
-   "phase": 4,
-   "title": "Faithfulness: your hallucination metric"
-  },
-  {
-   "day": 65,
-   "phase": 4,
-   "title": "Answer relevance and context precision"
-  },
-  {
-   "day": 66,
-   "phase": 4,
-   "title": "Context recall and the refusal path"
-  },
-  {
-   "day": 67,
-   "phase": 4,
-   "title": "RAGAS in practice"
-  },
-  {
-   "day": 68,
-   "phase": 4,
-   "title": "LLM as judge, and its biases"
-  },
-  {
-   "day": 69,
-   "phase": 4,
-   "title": "Rubric design and human agreement"
-  },
-  {
-   "day": 70,
-   "phase": 4,
-   "title": "Regression suites in CI"
-  },
-  {
-   "day": 71,
-   "phase": 4,
-   "title": "Checkpoint: the harness is the product"
-  },
-  {
-   "day": 72,
-   "phase": 5,
-   "title": "Ingestion as a data pipeline"
-  },
-  {
-   "day": 73,
-   "phase": 5,
-   "title": "Incremental updates and change detection"
-  },
-  {
-   "day": 74,
-   "phase": 5,
-   "title": "Deletes as correctness"
-  },
-  {
-   "day": 75,
-   "phase": 5,
-   "title": "Model versioning and blue/green reindex"
-  },
-  {
-   "day": 76,
-   "phase": 5,
-   "title": "Multi-tenancy and ACLs in retrieval"
-  },
-  {
-   "day": 77,
-   "phase": 5,
-   "title": "Prompt injection via retrieved content"
-  },
-  {
-   "day": 78,
-   "phase": 5,
-   "title": "The latency budget"
-  },
-  {
-   "day": 79,
-   "phase": 5,
-   "title": "Caching at every layer"
-  },
-  {
-   "day": 80,
-   "phase": 5,
-   "title": "Cost modeling"
-  },
-  {
-   "day": 81,
-   "phase": 5,
-   "title": "Observability: the trace you need"
-  },
-  {
-   "day": 82,
-   "phase": 5,
-   "title": "Debugging a bad answer, systematically"
-  },
-  {
-   "day": 83,
-   "phase": 5,
-   "title": "Streaming and perceived latency"
-  },
-  {
-   "day": 84,
-   "phase": 5,
-   "title": "Citations: prompt-based versus API-native"
-  },
-  {
-   "day": 85,
-   "phase": 5,
-   "title": "Structured outputs and RAG as a component"
-  },
-  {
-   "day": 86,
-   "phase": 5,
-   "title": "Checkpoint: production readiness review"
-  },
-  {
-   "day": 87,
-   "phase": 6,
-   "title": "Agentic RAG: retrieval as a tool"
-  },
-  {
-   "day": 88,
-   "phase": 6,
-   "title": "Self-RAG and reflection"
-  },
-  {
-   "day": 89,
-   "phase": 6,
-   "title": "GraphRAG I: entity graphs and communities"
-  },
-  {
-   "day": 90,
-   "phase": 6,
-   "title": "GraphRAG II: global versus local questions"
-  },
-  {
-   "day": 91,
-   "phase": 6,
-   "title": "Structured plus unstructured: text-to-SQL joins"
-  },
-  {
-   "day": 92,
-   "phase": 6,
-   "title": "Long context versus RAG: the real tradeoff"
-  },
-  {
-   "day": 93,
-   "phase": 6,
-   "title": "Memory: RAG turned inward"
-  },
-  {
-   "day": 94,
-   "phase": 6,
-   "title": "Multimodal RAG"
-  },
-  {
-   "day": 95,
-   "phase": 6,
-   "title": "Papers I: DPR and the original RAG paper"
-  },
-  {
-   "day": 96,
-   "phase": 6,
-   "title": "Papers II: HNSW and Product Quantization"
-  },
-  {
-   "day": 97,
-   "phase": 6,
-   "title": "Papers III: ColBERT, SPLADE, HyDE, RAGAS"
-  },
-  {
-   "day": 98,
-   "phase": 6,
-   "title": "Open problems in retrieval research"
-  },
-  {
-   "day": 99,
-   "phase": 6,
-   "title": "How to run your own RAG experiment"
-  },
-  {
-   "day": 100,
-   "phase": 6,
-   "title": "Capstone: design a system, defend it"
+   "title": "Review, and what comes next"
   }
  ]
 }

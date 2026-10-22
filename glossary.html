@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RAG Glossary</title>
+<style>
+:root {
+  --bg: #0e1117;
+  --bg-card: #161b24;
+  --ink: #e8ecf3;
+  --ink-dim: #9aa6b8;
+  --accent: #ffb454;
+  --accent-2: #5cc8ff;
+  --line: #2a3242;
+  --font: "Avenir Next", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); line-height: 1.6; }
+.topbar { display: flex; gap: 12px; align-items: center; padding: 14px 16px; border-bottom: 1px solid var(--line); }
+.topbar a { color: var(--ink-dim); text-decoration: none; font-size: .85rem; }
+.topbar a:hover { color: var(--accent-2); }
+.topbar .sep { color: var(--line); }
+.topbar .here { color: var(--ink); font-weight: 600; font-size: .9rem; }
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 16px 60px; }
+h1 { font-size: 1.9rem; margin: 36px 0 8px; }
+.lede { color: var(--ink-dim); margin: 0 0 28px; }
+h2 { font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent);
+     margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--line); }
+.find { width: 100%; padding: 11px 14px; font: inherit; font-size: .95rem; color: var(--ink);
+        background: var(--bg-card); border: 1px solid var(--line); border-radius: 8px; }
+.find:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 1px; }
+dl { margin: 0; }
+.term { background: var(--bg-card); border: 1px solid var(--line); border-radius: 10px;
+        padding: 14px 16px; margin: 0 0 10px; }
+dt { font-weight: 650; font-size: 1.02rem; }
+dt small { font-weight: 400; color: var(--ink-dim); font-size: .82rem; margin-left: 6px; }
+dd { margin: 4px 0 0; }
+dd .eg { display: block; margin-top: 6px; color: var(--ink-dim); font-size: .92rem; }
+.none { color: var(--ink-dim); display: none; }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) { --bg: #faf9f6; --bg-card: #ffffff; --ink: #1f1d1a; --ink-dim: #635e55;
+    --accent: #a8650a; --accent-2: #1769aa; --line: #e3ddd1; }
+}
+:root[data-theme="light"] { --bg: #faf9f6; --bg-card: #ffffff; --ink: #1f1d1a; --ink-dim: #635e55;
+  --accent: #a8650a; --accent-2: #1769aa; --line: #e3ddd1; }
+</style>
+</head>
+<body>
+<nav class="topbar">
+  <a href="index.html">Lab</a>
+  <span class="sep">|</span>
+  <a href="curriculum.html">Curriculum</a>
+  <span class="sep">|</span>
+  <span class="here">Glossary</span>
+</nav>
+<div class="wrap">
+  <h1>Glossary</h1>
+  <p class="lede">Every word the course uses, in plain English, with an everyday example. No definition here
+  uses a word that is not itself defined on this page. If you hit a word in a lesson that is missing, reply
+  to the email and it gets added.</p>
+
+  <input class="find" id="find" type="search" placeholder="Search for a word" aria-label="Search the glossary">
+  <p class="none" id="none">Nothing matches. Reply to the lesson email and I will add it.</p>
+
+  <h2>First words, lessons 1 to 6</h2>
+  <dl>
+    <div class="term"><dt>RAG <small>retrieval augmented generation</small></dt>
+      <dd>Before the AI answers, look up the relevant part of your own documents and give it to the AI with
+      the question.<span class="eg">An open book exam instead of a closed book one.</span></dd></div>
+    <div class="term"><dt>LLM <small>large language model</small></dt>
+      <dd>The AI that writes text, like ChatGPT or Claude. It learned from a huge amount of public text, so it
+      has never read your company's documents.<span class="eg">A very well read new hire on their first day.</span></dd></div>
+    <div class="term"><dt>Model</dt>
+      <dd>A program that learned its behaviour from examples instead of being written rule by rule. "The
+      model" usually just means the AI.</dd></div>
+    <div class="term"><dt>Prompt</dt>
+      <dd>Everything you send to the AI: your question, plus any instructions or text you paste in with it.
+      <span class="eg">The whole message you type into the chat box.</span></dd></div>
+    <div class="term"><dt>Hallucination</dt>
+      <dd>When the AI says something false in a confident voice. It is not lying. It is producing text that
+      sounds right without checking anything.<span class="eg">Someone answering a quiz question they half
+      remember, with total confidence.</span></dd></div>
+    <div class="term"><dt>Retrieval</dt>
+      <dd>Looking something up. The R in RAG.<span class="eg">Searching the handbook for the leave
+      policy.</span></dd></div>
+    <div class="term"><dt>Generation</dt>
+      <dd>The AI writing its answer. The G in RAG.</dd></div>
+    <div class="term"><dt>Keyword search</dt>
+      <dd>Finding documents that contain the exact words you typed.<span class="eg">Ctrl+F, but across
+      thousands of files.</span></dd></div>
+    <div class="term"><dt>Embedding</dt>
+      <dd>A list of numbers that stands for the meaning of a piece of text. Texts that mean similar things get
+      similar lists, even if they share no words.<span class="eg">A map coordinate for meaning: "dog" and
+      "puppy" get pinned close together, "dog" and "invoice" far apart.</span></dd></div>
+    <div class="term"><dt>Vector</dt>
+      <dd>Just a list of numbers. An embedding is a vector.<span class="eg">(3, 7) is a vector with two
+      numbers. Real embeddings have a few hundred.</span></dd></div>
+    <div class="term"><dt>Dimensions</dt>
+      <dd>How many numbers are in the list.<span class="eg">"384 dimensions" means a list of 384
+      numbers.</span></dd></div>
+    <div class="term"><dt>Similarity</dt>
+      <dd>How close two embeddings are. Close numbers mean close meaning.</dd></div>
+    <div class="term"><dt>Cosine similarity</dt>
+      <dd>One common way to measure that closeness, using the angle between two arrows. 1 means pointing the
+      same way (same meaning), 0 means unrelated.<span class="eg">Two compass needles: what matters is which
+      way they point, not how long they are.</span></dd></div>
+  </dl>
+
+  <h2>Building one, lessons 7 to 12</h2>
+  <dl>
+    <div class="term"><dt>Chunk</dt>
+      <dd>A small piece of a document, usually a paragraph or a few. We search chunks rather than whole
+      documents so we can hand the AI just the useful part.<span class="eg">One page torn out of a manual,
+      instead of the whole manual.</span></dd></div>
+    <div class="term"><dt>Chunking</dt>
+      <dd>Cutting documents into chunks.</dd></div>
+    <div class="term"><dt>Overlap</dt>
+      <dd>Letting neighbouring chunks share a few sentences, so an answer sitting right on a cut line does not
+      get split in half.</dd></div>
+    <div class="term"><dt>Context</dt>
+      <dd>The material you paste into the prompt next to the question. In RAG, the chunks you found.</dd></div>
+    <div class="term"><dt>Context window</dt>
+      <dd>The most text the AI can read in one go.<span class="eg">A desk that only fits so many pages at
+      once.</span></dd></div>
+    <div class="term"><dt>Token</dt>
+      <dd>The unit the AI counts text in. Roughly three quarters of a word. Prices and limits are given in
+      tokens.<span class="eg">"Unbelievable" might be three tokens: un, believ, able.</span></dd></div>
+  </dl>
+
+  <h2>Making it fast, lessons 13 to 16</h2>
+  <dl>
+    <div class="term"><dt>Index</dt>
+      <dd>Something built in advance so that searching later is fast.<span class="eg">The index at the back
+      of a book.</span></dd></div>
+    <div class="term"><dt>Vector database</dt>
+      <dd>A database built to store embeddings and quickly find the ones closest to a given one. Pinecone,
+      Weaviate and pgvector are examples.</dd></div>
+    <div class="term"><dt>Nearest neighbours</dt>
+      <dd>The stored items closest to your question. "Top 5 nearest neighbours" means the 5 closest.</dd></div>
+    <div class="term"><dt>Exact search <small>also brute force</small></dt>
+      <dd>Comparing the question against every single stored item. Always right, too slow once you have
+      millions.</dd></div>
+    <div class="term"><dt>Approximate search</dt>
+      <dd>Finding results that are almost certainly the closest, much faster than checking everything, at the
+      cost of occasionally missing one.<span class="eg">Asking for directions instead of reading the whole
+      map.</span></dd></div>
+    <div class="term"><dt>HNSW</dt>
+      <dd>The most popular approximate search method. It links each item to its nearby items, then searches
+      by hopping from neighbour to neighbour.<span class="eg">Finding someone in a city by asking friends of
+      friends.</span></dd></div>
+    <div class="term"><dt>Quantization</dt>
+      <dd>Storing numbers with less precision to save memory.<span class="eg">Writing 3.1 instead of
+      3.14159.</span></dd></div>
+    <div class="term"><dt>BM25</dt>
+      <dd>The standard way to rank keyword search results. Counts word matches, gives rare words more weight,
+      and goes easy on very long documents.</dd></div>
+    <div class="term"><dt>Hybrid search</dt>
+      <dd>Running keyword search and embedding search together and merging the two result lists.</dd></div>
+  </dl>
+
+  <h2>Making it good, lessons 17 to 20</h2>
+  <dl>
+    <div class="term"><dt>Reranker</dt>
+      <dd>A second, slower, more careful model that reorders a short list of search results.<span class="eg">A
+      senior reviewer checking the junior's picks.</span></dd></div>
+    <div class="term"><dt>Cross-encoder</dt>
+      <dd>A model that reads the question and one document together and scores how well they match. Accurate
+      but slow, so it is used as a reranker on a short list.</dd></div>
+    <div class="term"><dt>Bi-encoder</dt>
+      <dd>A model that turns the question and each document into embeddings separately. Fast, because the
+      documents can all be done in advance.</dd></div>
+    <div class="term"><dt>Recall</dt>
+      <dd>Of the things you should have found, how many you did find.<span class="eg">"Recall at 5 is 90
+      percent" means the right answer was in the top 5 for 90 out of 100 questions.</span></dd></div>
+    <div class="term"><dt>Latency</dt>
+      <dd>How long the user waits for an answer.</dd></div>
+    <div class="term"><dt>Golden set</dt>
+      <dd>A list of test questions where you already know the right answer, used to check whether the system
+      works and whether a change made it better or worse.</dd></div>
+  </dl>
+</div>
+<script>
+(function () {
+  var box = document.getElementById("find"), none = document.getElementById("none");
+  var terms = Array.prototype.slice.call(document.querySelectorAll(".term"));
+  box.addEventListener("input", function () {
+    var q = box.value.trim().toLowerCase(), shown = 0;
+    terms.forEach(function (t) {
+      var hit = !q || t.textContent.toLowerCase().indexOf(q) !== -1;
+      t.style.display = hit ? "" : "none";
+      if (hit) shown++;
+    });
+    none.style.display = shown ? "none" : "block";
+  });
+})();
+</script>
+</body>
+</html>

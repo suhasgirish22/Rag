@@ -1,0 +1,317 @@
+{
+ "lastDay": 39,
+ "lessons": [
+  {
+   "day": 1,
+   "phase": 1,
+   "title": "What RAG actually is: the open-book exam",
+   "summary": "Why a frozen model can't answer questions about your data, why fine-tuning is the wrong fix, and the two clocks (indexing time and query time) that every technique in this course runs on.",
+   "estMinutes": 25,
+   "publishedAt": "2026-09-14T03:30:00Z"
+  },
+  {
+   "day": 2,
+   "phase": 1,
+   "title": "The pipeline end to end, and where it breaks",
+   "summary": "RAG is five stages bolted together, chunk, embed, index, retrieve, generate, and end-to-end quality is the product of each stage's success rate, not the average. Today we trace the pipeline as a data flow and catalog the specific failure mode native to each stage.",
+   "estMinutes": 25,
+   "publishedAt": "2026-09-15T00:00:00.000Z"
+  },
+  {
+   "day": 3,
+   "phase": 1,
+   "title": "Why text isn't searchable: strings to numbers",
+   "summary": "Exact matching fails because people use different words for the same thing. The fix is to turn every chunk into a vector so similarity becomes arithmetic, which turns retrieval into a sparse storage problem with two very different layouts.",
+   "estMinutes": 25,
+   "publishedAt": "2026-09-16T03:39:29Z"
+  },
+  {
+   "day": 4,
+   "phase": 1,
+   "title": "TF-IDF from scratch",
+   "summary": "Two separate questions, how much a term matters here and whether it tells you anything at all, multiplied together. IDF is really surprisal, which is why it zeroes out stopwords without a stopword list.",
+   "estMinutes": 25,
+   "publishedAt": "2026-09-17T03:33:43Z"
+  },
+  {
+   "day": 5,
+   "phase": 1,
+   "title": "Cosine similarity and why we normalize",
+   "summary": "Ranking by dot product means a document concatenated to itself beats an exact match. Cosine fixes that by comparing direction and discarding magnitude, and normalizing at index time makes it cost a single multiply-accumulate.",
+   "estMinutes": 25,
+   "publishedAt": "2026-09-18T03:33:30Z"
+  },
+  {
+   "day": 6,
+   "phase": 1,
+   "title": "Chunking 101: windows, overlap, the tradeoff",
+   "summary": "The real reason to chunk is not context limits, it is that a long document's vector dilutes every term by about 1/sqrt(k). Overlap patches the boundary problem at a storage cost you can compute, and the famous 512 token default is folklore from BERT's architecture.",
+   "estMinutes": 25,
+   "publishedAt": "2026-09-19T03:33:28Z"
+  },
+  {
+   "day": 7,
+   "phase": 1,
+   "title": "Tokens: what they are and what they cost",
+   "summary": "BPE is a compression algorithm repurposed as a tokenizer, and the 4 chars per token rule breaks badly on code and non-Latin scripts. Tokenizers are model specific, and query-side context, not indexing, is what actually dominates a RAG bill.",
+   "estMinutes": 25,
+   "publishedAt": "2026-09-20T03:35:10Z"
+  },
+  {
+   "day": 8,
+   "phase": 1,
+   "title": "Your first end-to-end RAG in 100 lines",
+   "summary": "A complete retrieval pipeline with no dependencies, assembled from the last five days. Then two real failures traced to their exact cause: an off-topic query whose whole vector collapses to the word 'of', and a correct answer that ranks fourth because IDF measures rarity rather than meaning.",
+   "estMinutes": 30,
+   "publishedAt": "2026-09-21T03:36:00Z"
+  },
+  {
+   "day": 9,
+   "phase": 1,
+   "title": "Neural embeddings: what the encoder adds",
+   "summary": "Self-attention is a content addressable lookup with learned, soft matching, which is what gives one vector per word occurrence rather than per word type. It solves the vocabulary problem from Day 3, and costs quadratic attention, larger vectors, and all of your interpretability.",
+   "estMinutes": 25,
+   "publishedAt": "2026-09-22T03:34:57Z"
+  },
+  {
+   "day": 10,
+   "phase": 1,
+   "title": "Pooling: mean, CLS, and why it matters",
+   "summary": "Collapsing token vectors into one is lossy, and doing it without an attention mask makes your embeddings depend on batch composition. Raw CLS vectors score worse than averaged GloVe, and no pooling choice fixes anisotropy.",
+   "estMinutes": 25,
+   "publishedAt": "2026-09-23T03:43:59Z"
+  },
+  {
+   "day": 11,
+   "phase": 1,
+   "title": "Contrastive training and InfoNCE",
+   "summary": "InfoNCE is cross entropy over the passages in your batch, temperature decides which negatives your gradient actually pays attention to, and in-batch negatives give quadratic training signal for linear compute. The denominator is what fixes the anisotropy from Day 10.",
+   "estMinutes": 25,
+   "publishedAt": "2026-09-24T03:44:10Z"
+  },
+  {
+   "day": 12,
+   "phase": 1,
+   "title": "Hard negatives, the biggest training lever",
+   "summary": "Random negatives produce a loss around 240,000 times smaller than hard ones, so they stop teaching almost immediately. Mining harder negatives is the biggest quality lever available, and it is also how you accidentally train your model that correct answers are wrong.",
+   "estMinutes": 25,
+   "publishedAt": "2026-09-25T03:35:07Z"
+  },
+  {
+   "day": 13,
+   "phase": 1,
+   "title": "Query and passage asymmetry, the silent bug",
+   "summary": "Models handle the query/passage difference with separate encoders or a text prefix, and getting the prefix wrong fails without any error. I measured the cost on a 40 query benchmark and got 5 points of recall@1, with a confidence interval that crosses zero.",
+   "estMinutes": 25,
+   "publishedAt": "2026-09-26T03:38:19Z"
+  },
+  {
+   "day": 14,
+   "phase": 1,
+   "title": "Checkpoint: build and measure a baseline",
+   "summary": "Measured on a 40 query benchmark, dense retrieval beats the Day 8 TF-IDF system by 17.5 points of recall@1 with a confidence interval that does not cross zero. The win is not on the median query, it is that TF-IDF's failures land at rank 25 and rank 40 while the dense model's worst case is rank 5.",
+   "estMinutes": 30,
+   "publishedAt": "2026-09-27T03:37:12Z"
+  },
+  {
+   "day": 15,
+   "phase": 2,
+   "title": "Exact kNN and why it doesn't scale",
+   "summary": "Brute force search has an arithmetic intensity of 0.5 FLOPs per byte against a machine balance of 4, so it is memory bound by eight times and behaves like a table scan. Measured: 93 ms and 10.8 queries per second at a million vectors, exactly as the roofline predicts.",
+   "estMinutes": 25,
+   "publishedAt": "2026-09-28T03:37:12Z"
+  },
+  {
+   "day": 16,
+   "phase": 2,
+   "title": "The recall, latency, memory triangle",
+   "summary": "Recall in ANN means agreement with brute force, and the returns diminish hard: measured on real embeddings, scanning 1.7 percent of the data recovers 54 percent of the right answers and 13 percent recovers 95 percent. Which recall you need is a property of your whole pipeline, not your index.",
+   "estMinutes": 25,
+   "publishedAt": "2026-09-29T03:40:52Z"
+  },
+  {
+   "day": 17,
+   "phase": 2,
+   "title": "HNSW I: small-world graphs, the intuition",
+   "summary": "Greedy search on a pure nearest-neighbour graph gets 1.3 percent recall and stops after 1.7 hops, because every edge is short and local minima are everywhere. Eight random long edges per node more than double it, and HNSW is a skip list for metric space built on that idea.",
+   "estMinutes": 25,
+   "publishedAt": "2026-09-30T03:36:22Z"
+  },
+  {
+   "day": 18,
+   "phase": 2,
+   "title": "HNSW II: M, efConstruction, efSearch",
+   "summary": "Measured on a real incremental build: efSearch is a per-query knob you can change freely, while M and efConstruction are frozen at build time. Raising M past about 16 does nothing because the diversity heuristic refuses the extra edges, and a cheap efConstruction bakes a worse graph in permanently.",
+   "estMinutes": 25,
+   "publishedAt": "2026-10-01T03:36:39Z"
+  },
+  {
+   "day": 19,
+   "phase": 2,
+   "title": "HNSW III: build one yourself",
+   "summary": "Ninety lines of working HNSW, with layer sizes matching N/M^l exactly. Then a controlled comparison against the flat graph from Day 18 where the hierarchy contributed nothing at 2,800 vectors, which is a lesson about measuring at your own scale rather than trusting a paper's defaults.",
+   "estMinutes": 30,
+   "publishedAt": "2026-10-02T03:36:29Z"
+  },
+  {
+   "day": 20,
+   "phase": 2,
+   "title": "IVF: clustering the vector space",
+   "summary": "Measured: at 256 cells, nearly half of queries have their nearest neighbour in a cell they did not pick, which is why nprobe is a correctness requirement rather than a tuning knob. Compared at equal work rather than equal nprobe, finer partitions win decisively, and the sqrt(N) rule falls out of balancing the coarse scan against the list scan.",
+   "estMinutes": 25,
+   "publishedAt": "2026-10-03T03:36:18Z"
+  },
+  {
+   "day": 21,
+   "phase": 2,
+   "title": "Product quantization I: the compression idea",
+   "summary": "Splitting a vector into m pieces and quantizing each independently gives 256^m representable vectors from m bytes. Measured, PQ alone at 64x compression gets recall 0.646, but used as a shortlist with a full-vector rescoring pass it gets 0.992, which is why it is a filter rather than a replacement.",
+   "estMinutes": 25,
+   "publishedAt": "2026-10-04T03:39:27Z"
+  },
+  {
+   "day": 22,
+   "phase": 2,
+   "title": "Product quantization II: asymmetric distance",
+   "summary": "Precomputing an m by 256 table once per query turns scoring into table lookups and adds with no decode, and it is an exact reformulation rather than an approximation. Keeping the query unquantized is worth 17 points of recall over quantizing it, and the real win is 64 times less memory traffic.",
+   "estMinutes": 25,
+   "publishedAt": "2026-10-05T03:36:12Z"
+  },
+  {
+   "day": 23,
+   "phase": 2,
+   "title": "IVF-PQ: billion scale on one machine",
+   "summary": "Encoding the residual from the cell centroid rather than the raw vector is the idea that makes IVF-PQ work, and its value scales with how good your coarse quantizer is: measured, the gain triples going from 16 cells to 1024. The result is a billion vectors resident in 32 GB with the full data on SSD.",
+   "estMinutes": 25,
+   "publishedAt": "2026-10-06T03:41:37Z"
+  },
+  {
+   "day": 24,
+   "phase": 2,
+   "title": "OPQ and learned rotations",
+   "summary": "An orthogonal rotation leaves all distances unchanged but changes which dimensions land in which PQ subspace, which is free to exploit. Measured, the textbook variance-imbalance motivation did not apply to this model, but rotating into a decorrelated basis still bought 5 points of recall, while the expensive iterative refinement kept improving reconstruction error without improving recall.",
+   "estMinutes": 25,
+   "publishedAt": "2026-10-07T03:43:55Z"
+  },
+  {
+   "day": 25,
+   "phase": 2,
+   "title": "DiskANN: when the index won't fit in RAM",
+   "summary": "Co-locating each node's vector and adjacency list in one 4 KB page means one read per hop, and the beam width stops being a recall knob and becomes the queue depth: 100 reads is 10 ms serial and 1.25 ms at depth 8. The alpha pruning rule demonstrably densifies the graph, but I could not show its benefit at my scale.",
+   "estMinutes": 25,
+   "publishedAt": "2026-10-08T03:47:59Z"
+  },
+  {
+   "day": 26,
+   "phase": 2,
+   "title": "SSD-native search and the I/O that dominates",
+   "summary": "A hundred reads per query means 63 percent of queries touch the device's p99, so you need its p99.99 rather than its p99. Measured and simulated, planning from the median under-predicts the median query by 40 percent and the p99 query by nearly three times.",
+   "estMinutes": 25,
+   "publishedAt": "2026-10-09T03:36:18Z"
+  },
+  {
+   "day": 27,
+   "phase": 2,
+   "title": "Scalar and binary quantization",
+   "summary": "int8 costs 0.6 points of recall for 4x compression with no training, which makes it close to free. Binary at the same byte budget as PQ loses on raw recall but needs 12 instructions per comparison instead of 96, and once a rescoring stage runs the accuracy difference between all three largely disappears.",
+   "estMinutes": 25,
+   "publishedAt": "2026-10-10T03:37:07Z"
+  },
+  {
+   "day": 28,
+   "phase": 2,
+   "title": "Matryoshka embeddings",
+   "summary": "Naive truncation of an ordinary embedding collapses to 0.209 recall at 32 dimensions, because the information is spread evenly across all of them. A free rotation more than doubles that, and Matryoshka training buys the same property as a property of the model rather than a per-corpus artefact you have to version.",
+   "estMinutes": 25,
+   "publishedAt": "2026-10-11T03:49:09Z"
+  },
+  {
+   "day": 29,
+   "phase": 2,
+   "title": "Filtered search, the trap everyone hits",
+   "summary": "At identical 5.1 percent selectivity, post-filter recall ranged from 0.199 to 0.974 depending only on how the filter related to the query. The standard k over s arithmetic describes just the uncorrelated case, and the dangerous failure returns too few results rather than bad ones.",
+   "estMinutes": 25,
+   "publishedAt": "2026-10-12T03:37:06Z"
+  },
+  {
+   "day": 30,
+   "phase": 2,
+   "title": "Filter-aware traversal",
+   "summary": "Skipping filtered nodes during a graph walk shatters the graph: at 10 percent selectivity on a 16-NN graph the largest reachable component was 11 percent of the passing nodes. It is a percolation threshold that scales as 1/M, and the fix is to traverse everything while collecting only matches.",
+   "estMinutes": 25,
+   "publishedAt": "2026-10-13T03:36:01Z"
+  },
+  {
+   "day": 31,
+   "phase": 2,
+   "title": "Catch-up: everything so far in plain words",
+   "summary": "Thirty days with the maths taken out. Text becomes arrows, documents get cut into pages, a graph walk finds the nearest page without reading all of them, and quantisation shrinks the numbers. Plus an honest list of what you can forget from the last two weeks.",
+   "estMinutes": 15,
+   "publishedAt": "2026-10-14T03:40:21Z"
+  },
+  {
+   "day": 32,
+   "phase": 2,
+   "title": "BM25: know it cold",
+   "summary": "BM25 is word counting with three corrections: repetition stops helping, rare words count more, long documents get discounted. Worked by hand on four tiny documents, then run over the 31 lessons of this course, including one query where it picks the wrong one.",
+   "estMinutes": 18,
+   "publishedAt": "2026-10-15T03:35:56Z"
+  },
+  {
+   "day": 33,
+   "phase": 2,
+   "title": "Where dense retrieval fails: identifiers",
+   "summary": "Embeddings are trained to put similar meanings close together, and that smoothing is exactly wrong for a string like SKU-4417, where 4418 is a different product rather than a similar one. Measured on a real tokeniser: two different SKUs share 60 percent of their tokens, the same as fox and dog.",
+   "estMinutes": 18,
+   "publishedAt": "2026-10-16T03:35:27Z"
+  },
+  {
+   "day": 34,
+   "phase": 2,
+   "title": "Reciprocal Rank Fusion",
+   "summary": "Two retrievers give you two ranked lists whose scores mean nothing to each other. RRF throws the scores away and adds up 1 over 60 plus rank. Tried on this course's own lessons: one query got better, one got worse, one stayed put, and the reason why is the lesson.",
+   "estMinutes": 18,
+   "publishedAt": "2026-10-17T03:35:52Z"
+  },
+  {
+   "day": 35,
+   "phase": 2,
+   "title": "SPLADE: learned sparse retrieval",
+   "summary": "SPLADE keeps the inverted index of a word search engine but lets a model decide the weights, including weights on words the document never contained. One index instead of two, paid for in longer posting lists. Measured on this course's real index: 3,894 terms and 15,424 postings today, and the cost of expansion is linear in the expansion factor.",
+   "estMinutes": 18,
+   "publishedAt": "2026-10-18T03:43:28Z"
+  },
+  {
+   "day": 36,
+   "phase": 2,
+   "title": "ColBERT: late interaction and MaxSim",
+   "summary": "Instead of squashing a passage into one vector, ColBERT keeps one vector per token and scores by finding, for each query word, its best match anywhere in the document. The quality comes free and the storage does not: with 128 dimensional token vectors, the index costs the token count divided by three, which is 372 times bigger on this course's own lessons.",
+   "estMinutes": 18,
+   "publishedAt": "2026-10-19T03:43:35Z"
+  },
+  {
+   "day": 37,
+   "phase": 3,
+   "title": "Bi-encoders versus cross-encoders",
+   "summary": "One question decides the architecture: can the model do its work before the query arrives? A bi-encoder can, so it scales. A cross-encoder cannot, so it costs a model pass per document and can only reorder a shortlist. Measured on this course's lessons, BM25 alone gets the right lesson first 30 percent of the time but has it in the top five 90 percent of the time.",
+   "estMinutes": 18,
+   "publishedAt": "2026-10-20T03:43:44Z"
+  },
+  {
+   "day": 38,
+   "phase": 3,
+   "title": "Reranking, the highest-leverage upgrade",
+   "summary": "Reranking is a sort step dropped in between retrieval and the model. Your first stage sets the ceiling and the reranker decides how much of it you collect. Measured on this course's lessons, the recall curve flattens at 15 candidates, so retrieving 50 would cost three times as much and buy nothing.",
+   "estMinutes": 18,
+   "publishedAt": "2026-10-21T03:43:17Z"
+  },
+  {
+   "day": 39,
+   "phase": 3,
+   "title": "Building a retrieval cascade",
+   "summary": "A cascade is a funnel where each stage costs more per item and sees fewer items. What breaks is never the stages, it is the contract between them: fetching the text, removing duplicates, and what happens when a stage fails. Measured here, 38 percent of a top 20 candidate list was repeat documents.",
+   "estMinutes": 18,
+   "publishedAt": "2026-10-22T03:43:16Z"
+  }
+ ]
+}

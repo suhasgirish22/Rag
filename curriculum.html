@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RAG: Zero to Researcher</title>
+<title>RAG From Zero</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap">
 <style>
 :root {
@@ -300,27 +300,29 @@ a.btn { display: inline-block; text-decoration: none; text-align: center; }
   <a href="advanced.html">Advanced</a>
   <span class="sep">|</span>
   <span class="here">Curriculum</span>
-  <span class="badge">100 days</span>
+  <a href="glossary.html">Glossary</a>
+  <span class="badge">20 lessons</span>
 </nav>
 
 <div class="wrap">
 
   <header class="masthead">
-    <p class="kicker">One lesson every morning, 9:00 IST</p>
-    <h1>RAG: Zero to Researcher</h1>
-    <p>A hundred days from first principles to the research frontier. Fifteen to twenty minutes each.
-       A day only counts once you have written your note for it, and the note is a commit on your own GitHub.</p>
+    <p class="kicker">The next lesson arrives after you finish this one</p>
+    <h1>RAG From Zero</h1>
+    <p>Twenty short lessons in plain English, about ten minutes each. Every new word is explained the first
+       time it appears, and all of them live in the <a href="glossary.html">glossary</a>. When you finish a lesson,
+       reply to its email with one line. That reply is what moves you on to the next one.</p>
   </header>
 
   <div class="readouts" id="readouts"></div>
 
   <div class="gridhead">
-    <h2>The hundred days</h2>
+    <h2>The lessons</h2>
     <div class="legend" id="legend"></div>
   </div>
   <div class="grid" id="grid"></div>
   <div class="gridfoot">
-    <span>Solid means your note is in. Faint means you ticked it here only. Outlined is published and open. Ringed is today.</span>
+    <span>Solid means you replied. Ringed is the lesson waiting for you.</span>
     <span id="pct"></span>
   </div>
 
@@ -338,13 +340,13 @@ a.btn { display: inline-block; text-decoration: none; text-align: center; }
       <div class="prose" id="l-body"><p>Fetching the lesson.</p></div>
       <div id="l-ex"></div>
       <div class="complete" id="l-done" hidden>
-        <a class="btn" id="notelink" href="#" target="_blank" rel="noopener">Write your note</a>
+        <a class="btn" id="notelink" href="#">Reply: I'm done</a>
         <button class="btn ghost" id="mark" type="button">Mark complete</button>
         <p class="status" id="status"></p>
       </div>
-      <p class="whynote">The note opens a four line file on GitHub. Fill it in, hit commit, and two things happen:
-         the day turns solid here because the file is now readable from anywhere, and the commit lands on your
-         contribution graph. Your rating out of five is how I find out whether a lesson was pitched right.</p>
+      <p class="whynote">Replying is the whole system. Write "done", or the first word or sentence that confused you.
+         Either one counts. I read it the next morning, answer any question at the top of the next lesson, and
+         only then send it. No reply, no new lesson, so nothing piles up.</p>
     </article>
 
     <section class="roadmap">
@@ -361,115 +363,33 @@ a.btn { display: inline-block; text-decoration: none; text-align: center; }
 
 <script>
 const PHASES = [
-  { id:1, name:"Foundations",         from:1,  to:14,   color:"var(--p1)" },
-  { id:2, name:"The Retrieval Stack", from:15, to:36,   color:"var(--p2)" },
-  { id:3, name:"Quality Engineering", from:37, to:56,   color:"var(--p3)" },
-  { id:4, name:"Evaluation",          from:57, to:71,   color:"var(--p4)" },
-  { id:5, name:"Production",          from:72, to:86,   color:"var(--p5)" },
-  { id:6, name:"Research Frontier",   from:87, to:100,  color:"var(--p6)" },
+  { id:1, name:"The big idea",    from:1,  to:6,   color:"var(--p1)" },
+  { id:2, name:"Building one",    from:7,  to:12,  color:"var(--p2)" },
+  { id:3, name:"Making it fast",  from:13, to:16,  color:"var(--p3)" },
+  { id:4, name:"Making it good",  from:17, to:20,  color:"var(--p4)" },
 ];
 
 const SYLLABUS = [
-"What RAG actually is: the open-book exam",
-"The pipeline end to end, and where it breaks",
-"Why text isn't searchable: strings to numbers",
-"TF-IDF from scratch",
-"Cosine similarity and why we normalize",
-"Chunking 101: windows, overlap, the tradeoff",
-"Tokens: what they are and what they cost",
-"Your first end-to-end RAG in 100 lines",
-"Neural embeddings: what the encoder adds",
-"Pooling: mean, CLS, and why it matters",
-"Contrastive training and InfoNCE",
-"Hard negatives, the biggest training lever",
-"Query and passage asymmetry, the silent bug",
-"Checkpoint: build and measure a baseline",
-"Exact kNN and why it doesn't scale",
-"The recall, latency, memory triangle",
-"HNSW I: small-world graphs, the intuition",
-"HNSW II: M, efConstruction, efSearch",
-"HNSW III: build one yourself",
-"IVF: clustering the vector space",
-"Product quantization I: the compression idea",
-"Product quantization II: asymmetric distance",
-"IVF-PQ: billion scale on one machine",
-"OPQ and learned rotations",
-"DiskANN: when the index won't fit in RAM",
-"SSD-native search and the I/O that dominates",
-"Scalar and binary quantization",
-"Matryoshka embeddings",
-"Filtered search, the trap everyone hits",
-"Filter-aware traversal",
-"Catch-up: everything so far in plain words",
-"BM25: know it cold",
-"Where dense retrieval fails: identifiers",
-"Reciprocal Rank Fusion",
-"SPLADE: learned sparse retrieval",
-"ColBERT: late interaction and MaxSim",
-"Bi-encoders versus cross-encoders",
-"Reranking, the highest-leverage upgrade",
-"Building a retrieval cascade",
-"LLM as reranker",
-"Structure-aware chunking",
-"Semantic chunking",
-"Small-to-big parent document retrieval",
-"Proposition indexing",
-"Contextual retrieval I: the idea",
-"Contextual retrieval II: making it affordable",
-"Late chunking",
-"Document parsing: PDFs, tables, garbage in",
-"Metadata: what to store and why",
-"Query rewriting for multi-turn",
-"Multi-query and paraphrase fusion",
-"HyDE: searching passage space",
-"Query decomposition for multi-hop",
-"Routing: when not to retrieve",
-"Lost in the middle: context ordering",
-"Checkpoint: measure every technique so far",
-"You cannot tune what you cannot measure",
-"Building a golden set",
-"Synthetic questions and their biases",
-"Recall@k, the headline metric",
-"MRR and why rank position matters",
-"nDCG: graded relevance done right",
-"Separating retrieval from generation failures",
-"Faithfulness: your hallucination metric",
-"Answer relevance and context precision",
-"Context recall and the refusal path",
-"RAGAS in practice",
-"LLM as judge, and its biases",
-"Rubric design and human agreement",
-"Regression suites in CI",
-"Checkpoint: the harness is the product",
-"Ingestion as a data pipeline",
-"Incremental updates and change detection",
-"Deletes as correctness",
-"Model versioning and blue/green reindex",
-"Multi-tenancy and ACLs in retrieval",
-"Prompt injection via retrieved content",
-"The latency budget",
-"Caching at every layer",
-"Cost modeling",
-"Observability: the trace you need",
-"Debugging a bad answer, systematically",
-"Streaming and perceived latency",
-"Citations: prompt-based versus API-native",
-"Structured outputs and RAG as a component",
-"Checkpoint: production readiness review",
-"Agentic RAG: retrieval as a tool",
-"Self-RAG and reflection",
-"GraphRAG I: entity graphs and communities",
-"GraphRAG II: global versus local questions",
-"Structured plus unstructured: text-to-SQL joins",
-"Long context versus RAG: the real tradeoff",
-"Memory: RAG turned inward",
-"Multimodal RAG",
-"Papers I: DPR and the original RAG paper",
-"Papers II: HNSW and Product Quantization",
-"Papers III: ColBERT, SPLADE, HyDE, RAGAS",
-"Open problems in retrieval research",
-"How to run your own RAG experiment",
-"Capstone: design a system, defend it",
+"What RAG is, with no jargon",
+"Why AI chatbots make things up",
+"Finding the right paragraph: keyword search",
+"Why keyword search misses things",
+"Turning words into numbers",
+"Close in meaning means close in distance",
+"Cutting documents into pieces",
+"How big should a piece be",
+"Putting what you found into the prompt",
+"A tiny RAG, worked on paper",
+"Your first working RAG, line by line",
+"Review: the whole picture so far",
+"Why search gets slow with millions of documents",
+"Shortcuts that are usually right",
+"What a vector database actually is",
+"Using both kinds of search together",
+"A second opinion: reranking",
+"When the answer is wrong, where to look",
+"Testing with questions you already know the answer to",
+"Review, and what comes next",
 ];
 
 const TOTAL = SYLLABUS.length;
@@ -491,7 +411,7 @@ let verified  = {};          // day -> {notedAt, clarity, words} read back from 
 let viewDay   = null;
 
 const REPO = "https://github.com/suhasgirish22/Rag";
-const noteUrl = d => `${REPO}/edit/gh-pages/notes/day-${pad(d)}.md`;
+const noteUrl = d => `mailto:suhasgirish22@gmail.com?subject=${encodeURIComponent("RAG lesson " + d + ": reply")}&body=${encodeURIComponent("done")}`;
 
 function loadProgress() {
   try { progress = JSON.parse(localStorage.getItem(KEY) || "{}"); }
@@ -597,10 +517,10 @@ async function renderLesson(day) {
   viewDay = day;
   if (day == null) {
     elTitle.textContent = "No lesson published yet";
-    elBody.innerHTML = "<p>The first lesson arrives at 9:00 IST.</p>";
+    elBody.innerHTML = "<p>The first lesson is on its way.</p>";
     return;
   }
-  elDay.innerHTML = `${pad(day)}<small>Day</small>`;
+  elDay.innerHTML = `${day}<small>Lesson</small>`;
 
   if (!bodies.has(day)) {
     elBody.innerHTML = "<p>Loading.</p>";
@@ -640,10 +560,10 @@ async function renderLesson(day) {
   elBar.hidden = false;
   const ver = verified[day];
   elNoteLink.href = noteUrl(day);
-  elNoteLink.textContent = ver ? `Edit your day ${day} note` : `Write your day ${day} note`;
+  elNoteLink.textContent = ver ? `You replied to lesson ${day}` : `Reply: I'm done with lesson ${day}`;
   elNoteLink.className = ver ? "btn ghost" : "btn";
   elMark.hidden = !!ver;
-  elMark.textContent = progress[day] ? `Untick day ${day}` : `Tick day ${day} without a note`;
+  elMark.textContent = progress[day] ? `Untick lesson ${day}` : `Tick it here only`;
   if (ver) {
     const bits = [];
     if (ver.notedAt) bits.push("Note committed " + new Date(ver.notedAt)
@@ -652,7 +572,7 @@ async function renderLesson(day) {
     elStatus.textContent = bits.join(", ");
     elStatus.className = "status ok";
   } else if (progress[day]) {
-    elStatus.textContent = "Ticked in this browser. Nobody else can see that, including me. Write the note to make it count.";
+    elStatus.textContent = "Ticked in this browser only. I can't see that. Reply to the email to make it count.";
     elStatus.className = "status";
   } else { elStatus.textContent = ""; elStatus.className = "status"; }
 }
