@@ -1,6 +1,6 @@
 {
  "track": "plain-english",
- "lastDay": 1,
+ "lastDay": 2,
  "lessons": [
   {
    "day": 1,
@@ -17,6 +17,16 @@
    "repliedAt": "2026-10-27T12:42:59Z",
    "emailThreadId": "1a162226badef2b4",
    "lastEmailAt": "2026-10-26"
+  },
+  {
+   "day": 2,
+   "phase": 1,
+   "title": "Why AI chatbots make things up",
+   "summary": "An LLM writes by picking a likely next word, over and over. It never looks anything up, so when it does not know, it still picks the likeliest sounding word. Putting the real answer in the prompt changes which word is likeliest, which is why RAG works.",
+   "estMinutes": 10,
+   "publishedAt": "2026-10-28T03:42:39Z",
+   "emailIds": [],
+   "repliedAt": null
   }
  ]
 }

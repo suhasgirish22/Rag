@@ -68,12 +68,12 @@ def first_commit_date(path):
     rel = os.path.relpath(path, ROOT)
     try:
         out = subprocess.run(
-            ["git", "log", "--follow", "--diff-filter=AM", "--format=%aI", "--", rel],
+            ["git", "log", "--diff-filter=AM", "--format=%aI", "--", rel],
             cwd=ROOT, capture_output=True, text=True, timeout=30,
         ).stdout.strip().splitlines()
     except Exception:
         return None
-    return out[-1] if out else None
+    return out[0] if out else None
 
 
 def main():
@@ -101,7 +101,8 @@ def main():
             entry = {"words": words}
             if m:
                 entry["clarity"] = int(m.group(1))
-            when = first_commit_date(path)
+            m2 = re.search(r"^Replied (\d{4}-\d{2}-\d{2})", text, re.M)
+            when = m2.group(1) if m2 else first_commit_date(path)
             if when:
                 entry["notedAt"] = when
             verified[str(day)] = entry
