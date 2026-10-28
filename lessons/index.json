@@ -25,8 +25,12 @@
    "summary": "An LLM writes by picking a likely next word, over and over. It never looks anything up, so when it does not know, it still picks the likeliest sounding word. Putting the real answer in the prompt changes which word is likeliest, which is why RAG works.",
    "estMinutes": 10,
    "publishedAt": "2026-10-28T03:42:39Z",
-   "emailIds": [],
-   "repliedAt": null
+   "emailIds": [
+    "1a1809ba5c8ff358"
+   ],
+   "repliedAt": null,
+   "emailThreadId": "1a1809ba5c8ff358",
+   "lastEmailAt": "2026-10-28"
   }
  ]
 }
