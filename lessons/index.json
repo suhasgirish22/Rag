@@ -1,6 +1,6 @@
 {
  "track": "plain-english",
- "lastDay": 2,
+ "lastDay": 3,
  "lessons": [
   {
    "day": 1,
@@ -31,6 +31,16 @@
    "repliedAt": "2026-10-28T08:31:58Z",
    "emailThreadId": "1a1809ba5c8ff358",
    "lastEmailAt": "2026-10-28"
+  },
+  {
+   "day": 3,
+   "phase": 1,
+   "title": "Finding the right paragraph: keyword search",
+   "summary": "The oldest way to find the right paragraph is to look for the question's words in your documents and pick the paragraph with the most matches. Search engines make this fast by building an index in advance. It works well, until the question uses a different word.",
+   "estMinutes": 10,
+   "publishedAt": "2026-10-29T03:42:36Z",
+   "emailIds": [],
+   "repliedAt": null
   }
  ]
 }
