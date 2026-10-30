@@ -1,6 +1,6 @@
 {
  "track": "plain-english",
- "lastDay": 3,
+ "lastDay": 4,
  "lessons": [
   {
    "day": 1,
@@ -45,6 +45,16 @@
    "repliedAt": "2026-10-29T04:11:43Z",
    "emailThreadId": "1a185c1fa19e9193",
    "lastEmailAt": "2026-10-29"
+  },
+  {
+   "day": 4,
+   "phase": 1,
+   "title": "Why keyword search misses things",
+   "summary": "People and documents use different words for the same thing, and keyword search only matches exact words. Patches like synonym lists and stemming help a little, but they never catch up. What you actually want is to match meaning.",
+   "estMinutes": 10,
+   "publishedAt": "2026-10-30T03:43:16Z",
+   "emailIds": [],
+   "repliedAt": null
   }
  ]
 }
