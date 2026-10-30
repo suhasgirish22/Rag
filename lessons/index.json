@@ -53,8 +53,12 @@
    "summary": "People and documents use different words for the same thing, and keyword search only matches exact words. Patches like synonym lists and stemming help a little, but they never catch up. What you actually want is to match meaning.",
    "estMinutes": 10,
    "publishedAt": "2026-10-30T03:43:16Z",
-   "emailIds": [],
-   "repliedAt": null
+   "emailIds": [
+    "1a18ae8f749f8ddf"
+   ],
+   "repliedAt": null,
+   "emailThreadId": "1a18ae8f749f8ddf",
+   "lastEmailAt": "2026-10-30"
   }
  ]
 }
